@@ -1,0 +1,80 @@
+﻿@model AssessoriaWeb.Models.Pessoa
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pessoa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_datanascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_datanascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

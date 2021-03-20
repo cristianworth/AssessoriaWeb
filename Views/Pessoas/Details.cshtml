@@ -1,0 +1,74 @@
+﻿@model AssessoriaWeb.Models.Pessoa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pessoa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_datanascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_datanascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pes_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pes_tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pes_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
