@@ -1,4 +1,5 @@
 ﻿using AssessoriaWeb.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,24 +22,25 @@ namespace AssessoriaWeb.Controllers
             string redirecionar = "Login";
             if (ModelState.IsValid)
             {
-                var retorno = db.Pessoas.Where(a => a.pes_login.Equals(p.pes_login) && a.pes_senha.Equals(p.pes_senha)).FirstOrDefault();
+                var retorno = db.Pessoas.Where(x => x.pes_login.Equals(p.pes_login) && x.pes_senha.Equals(p.pes_senha)).FirstOrDefault();
                 if (retorno == null)
                 {
                     //login inválido
-                    //return HttpNotFound();
+                    ViewBag.Message = "Usuário ou senha inválida";
+                    return View();
                 }
                 else
                 {
                     switch (retorno.pes_tipo)
                     {
                         case 1:
-                            redirecionar = "Index"; //AtletaDashBoard
+                            redirecionar = "Index"; //redirecionar = "AtletaDashBoard";
                             break;
                         case 2:
-                            redirecionar = "Index"; //AssessorDashBoard
+                            redirecionar = "Index"; //redirecionar = "AssessorDashBoard";
                             break;
                         default:
-                            redirecionar = "Index"; //NutricionistaDashBoard
+                            redirecionar = "Index"; //redirecionar = "NutricionistaDashBoard";
                             break;
                     }
                     Session["PessoaId"] = retorno.pes_id.ToString();
