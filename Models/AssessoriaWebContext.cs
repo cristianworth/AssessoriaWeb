@@ -21,5 +21,11 @@ namespace AssessoriaWeb.Models
         }
 
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Pessoa> Pessoas { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Atleta> Atletas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pessoa>().HasMany(e => e.Atletas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
+        }
     }
 }
