@@ -20,5 +20,6 @@ namespace AssessoriaWeb.Models
         public int pes_id { get; set; }
         [Display(Name = "Pessoa")]
         public Pessoa Pessoa { get; set; }
+        public ICollection<Avaliacao> Avaliacoes { get; set; }
     }
 }

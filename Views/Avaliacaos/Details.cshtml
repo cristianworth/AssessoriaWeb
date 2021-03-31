@@ -1,0 +1,66 @@
+﻿@model AssessoriaWeb.Models.Avaliacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Avaliacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Atleta.atl_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atleta.atl_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ava_data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ava_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ava_peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ava_peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ava_gorduraVisceral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ava_gorduraVisceral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ava_gorduraCorporal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ava_gorduraCorporal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ava_bioimpedancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ava_bioimpedancia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ava_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

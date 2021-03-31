@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AssessoriaWeb.Models.Avaliacao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Atleta.atl_categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ava_data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ava_peso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ava_gorduraVisceral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ava_gorduraCorporal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ava_bioimpedancia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atleta.atl_categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ava_data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ava_peso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ava_gorduraVisceral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ava_gorduraCorporal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ava_bioimpedancia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ava_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ava_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ava_id })
+        </td>
+    </tr>
+}
+
+</table>

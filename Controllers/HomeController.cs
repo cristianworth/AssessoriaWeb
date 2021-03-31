@@ -16,7 +16,14 @@ namespace AssessoriaWeb.Controllers
             return View();
         }
 
-        [HttpPost]
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+
+            [HttpPost]
         public ActionResult Login(Pessoa p)
         {
             string redirecionar = "Login";
