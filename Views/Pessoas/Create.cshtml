@@ -1,5 +1,5 @@
 ﻿@model AssessoriaWeb.Models.Pessoa
-
+@using AssessoriaWeb.Helpers
 @{
     ViewBag.Title = "Create";
 }
@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Pessoa</h4>
         <hr />
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_datanascimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pes_datanascimento, new { htmlAttributes = new { @class = "form-control datePicker" } })
+                @Html.EditorFor(model => model.pes_datanascimento, new { htmlAttributes = new { @class = "form-control",   type = "date"} })
                 @Html.ValidationMessageFor(model => model.pes_datanascimento, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_tipo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pes_tipo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.CustomDropdownListFor(model => model.pes_tipo, ViewBag.list_tipos as List<CustomHelpers.CustomSelectItem>, null,"",  new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.pes_tipo, "", new { @class = "text-danger" })
             </div>
         </div>

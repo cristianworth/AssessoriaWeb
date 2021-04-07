@@ -21,5 +21,9 @@ namespace AssessoriaWeb.Models
         [Display(Name = "Pessoa")]
         public Pessoa Pessoa { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public Atleta()
+        {
+            Avaliacoes = new HashSet<Avaliacao>();
+        }
     }
 }

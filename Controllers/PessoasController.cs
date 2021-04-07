@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AssessoriaWeb.Models;
+using static AssessoriaWeb.Helpers.CustomHelpers;
 
 namespace AssessoriaWeb.Controllers
 {
@@ -38,6 +39,12 @@ namespace AssessoriaWeb.Controllers
         // GET: Pessoas/Create
         public ActionResult Create()
         {
+            IList<CustomSelectItem> list_tipos = new List<CustomSelectItem>( new [] {
+                new CustomSelectItem { Value = "1", SelectedValue = "Atleta", Text = "Atleta", Selected = true}, 
+                new CustomSelectItem { Value = "2", SelectedValue = "Assessor", Text = "Assessor"}, 
+                new CustomSelectItem { Value = "3", SelectedValue = "Nutricionista", Text = "Nutricionista"}
+            } );
+            ViewBag.list_tipos = list_tipos;
             return View();
         }
 
