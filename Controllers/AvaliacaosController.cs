@@ -17,7 +17,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Avaliacaos
         public ActionResult Index()
         {
-            var avaliacaos = db.Avaliacaos.Include(a => a.Atleta);
+            var avaliacaos = db.Avaliacaos.Include(p => p.Atleta).Include(a => a.Atleta.Pessoa);
             return View(avaliacaos.ToList());
         }
 
@@ -29,6 +29,8 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            db.Entry(avaliacao).Reference(p => p.Atleta).Load();
+            db.Entry(avaliacao.Atleta).Reference(p => p.Pessoa).Load();
             if (avaliacao == null)
             {
                 return HttpNotFound();
@@ -39,7 +41,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Avaliacaos/Create
         public ActionResult Create()
         {
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria");
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", avaliacao.atl_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", avaliacao.atl_id);
             return View(avaliacao);
         }
 
@@ -73,7 +75,7 @@ namespace AssessoriaWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", avaliacao.atl_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", avaliacao.atl_id);
             return View(avaliacao);
         }
 
@@ -90,7 +92,7 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", avaliacao.atl_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", avaliacao.atl_id);
             return View(avaliacao);
         }
 
