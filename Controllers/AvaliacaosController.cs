@@ -17,7 +17,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Avaliacaos
         public ActionResult Index()
         {
-            var avaliacaos = db.Avaliacaos.Include(a => a.Atleta);
+            var avaliacaos = db.Avaliacaos.Include(a => a.Atleta.Pessoa).Include(p=>p.Atleta);
             return View(avaliacaos.ToList());
         }
 

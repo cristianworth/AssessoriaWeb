@@ -7,120 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AssessoriaWeb.Models;
-using static AssessoriaWeb.Helpers.CustomHelpers;
 
 namespace AssessoriaWeb.Controllers
 {
-    public class PessoasController : Controller
+    public class EnderecoesController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
 
-        // GET: Pessoas
+        // GET: Enderecoes
         public ActionResult Index()
         {
-            var pessoas = db.Pessoas.Include(a => a.TipoPessoa);
-            return View(pessoas.ToList());
+            var enderecoes = db.Enderecoes.Include(e => e.Pessoa);
+            return View(enderecoes.ToList());
         }
 
-        // GET: Pessoas/Details/5
+        // GET: Enderecoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = db.Pessoas.Find(id);
-            db.Entry(pessoa).Reference(p => p.TipoPessoa).Load();
-
-            if (pessoa == null)
+            Endereco endereco = db.Enderecoes.Find(id);
+            if (endereco == null)
             {
                 return HttpNotFound();
             }
-            return View(pessoa);
+            return View(endereco);
         }
 
-        // GET: Pessoas/Create
+        // GET: Enderecoes/Create
         public ActionResult Create()
         {
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
+            ViewBag.pes_id = new SelectList(db.Pessoas, "pes_id", "pes_nome");
             return View();
         }
 
-        // POST: Pessoas/Create
+        // POST: Enderecoes/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Create([Bind(Include = "end_id,end_bairro,end_numero,end_logradouro,end_complemento,end_cep,pes_id")] Endereco endereco)
         {
             if (ModelState.IsValid)
             {
-                db.Pessoas.Add(pessoa);
+                db.Enderecoes.Add(endereco);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
-            return View(pessoa);
+            ViewBag.pes_id = new SelectList(db.Pessoas, "pes_id", "pes_nome", endereco.pes_id);
+            return View(endereco);
         }
 
-        // GET: Pessoas/Edit/5
+        // GET: Enderecoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = db.Pessoas.Find(id);
-            if (pessoa == null)
+            Endereco endereco = db.Enderecoes.Find(id);
+            if (endereco == null)
             {
                 return HttpNotFound();
             }
-
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
-            return View(pessoa);
+            ViewBag.pes_id = new SelectList(db.Pessoas, "pes_id", "pes_nome", endereco.pes_id);
+            return View(endereco);
         }
 
-        // POST: Pessoas/Edit/5
+        // POST: Enderecoes/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Edit([Bind(Include = "end_id,end_bairro,end_numero,end_logradouro,end_complemento,end_cep,pes_id")] Endereco endereco)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pessoa).State = EntityState.Modified;
+                db.Entry(endereco).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
-            return View(pessoa);
+            ViewBag.pes_id = new SelectList(db.Pessoas, "pes_id", "pes_nome", endereco.pes_id);
+            return View(endereco);
         }
 
-        // GET: Pessoas/Delete/5
+        // GET: Enderecoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = db.Pessoas.Find(id);
-            if (pessoa == null)
+            Endereco endereco = db.Enderecoes.Find(id);
+            if (endereco == null)
             {
                 return HttpNotFound();
             }
-            return View(pessoa);
+            return View(endereco);
         }
 
-        // POST: Pessoas/Delete/5
+        // POST: Enderecoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pessoa pessoa = db.Pessoas.Find(id);
-            db.Pessoas.Remove(pessoa);
+            Endereco endereco = db.Enderecoes.Find(id);
+            db.Enderecoes.Remove(endereco);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

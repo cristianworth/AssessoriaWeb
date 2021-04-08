@@ -26,12 +26,15 @@ namespace AssessoriaWeb.Models
         public string pes_login { get; set; }
         [Display(Name = "Senha")]
         public string pes_senha { get; set; }
-        [Display(Name = "Tipo")]
-        public int pes_tipo { get; set; }
+        public int tpp_id { get; set; }
+        public TipoPessoa TipoPessoa { get; set; }
         public ICollection<Atleta> Atletas { get; set; }
+        public ICollection<Endereco> Enderecos { get; set; }
+
         public Pessoa()
         {
             Atletas = new HashSet<Atleta>();
+            Enderecos = new HashSet<Endereco>();
         }
     }
 }

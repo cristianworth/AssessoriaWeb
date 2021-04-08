@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.pes_senha)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pes_tipo)
+            @Html.DisplayNameFor(model => model.TipoPessoa.tpp_descricao)
         </th>
         <th></th>
     </tr>
@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.pes_senha)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pes_tipo)
+            @Html.DisplayFor(modelItem => item.TipoPessoa.tpp_descricao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.pes_id }) |

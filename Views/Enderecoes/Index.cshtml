@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AssessoriaWeb.Models.Endereco>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pessoa.pes_nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_logradouro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_complemento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_cep)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pessoa.pes_nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_complemento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_cep)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.end_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.end_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.end_id })
+        </td>
+    </tr>
+}
+
+</table>

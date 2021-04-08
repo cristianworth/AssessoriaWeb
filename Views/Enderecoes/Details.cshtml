@@ -1,0 +1,66 @@
+﻿@model AssessoriaWeb.Models.Endereco
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Endereco</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pessoa.pes_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pessoa.pes_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_bairro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_logradouro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_logradouro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_complemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_complemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_cep)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.end_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

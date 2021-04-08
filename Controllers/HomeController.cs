@@ -23,36 +23,35 @@ namespace AssessoriaWeb.Controllers
             return RedirectToAction("Login");
         }
 
-            [HttpPost]
-        public ActionResult Login(Pessoa p)
+        [HttpPost]
+        public ActionResult Login(Pessoa pessoa)
         {
             string redirecionar = "Login";
             if (ModelState.IsValid)
             {
-                var retorno = db.Pessoas.Where(x => x.pes_login.Equals(p.pes_login) && x.pes_senha.Equals(p.pes_senha)).FirstOrDefault();
+                var retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).Include(p => p.TipoPessoa).FirstOrDefault();
                 if (retorno == null)
                 {
                     //login inválido
                     ViewBag.Message = "Usuário ou senha inválida";
                     return View();
                 }
-                else
+
+                switch (retorno.tpp_id)
                 {
-                    switch (retorno.pes_tipo)
-                    {
-                        case 1:
-                            redirecionar = "Index"; //redirecionar = "AtletaDashBoard";
-                            break;
-                        case 2:
-                            redirecionar = "Index"; //redirecionar = "AssessorDashBoard";
-                            break;
-                        default:
-                            redirecionar = "Index"; //redirecionar = "NutricionistaDashBoard";
-                            break;
-                    }
-                    Session["PessoaId"] = retorno.pes_id.ToString();
-                    Session["PessoaNome"] = retorno.pes_nome;
+                    case 1:
+                        redirecionar = "Index"; //redirecionar = "AtletaDashBoard";
+                        break;
+                    case 2:
+                        redirecionar = "Index"; //redirecionar = "AssessorDashBoard";
+                        break;
+                    default:
+                        redirecionar = "Index"; //redirecionar = "NutricionistaDashBoard";
+                        break;
                 }
+                Session["PessoaId"] = retorno.pes_id.ToString();
+                Session["PessoaNome"] = retorno.pes_nome;
+
             }
             return RedirectToAction(redirecionar);
         }

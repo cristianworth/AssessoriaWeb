@@ -22,13 +22,19 @@ namespace AssessoriaWeb.Models
 
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Pessoa> Pessoas { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Atleta> Atletas { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.TipoPessoa> TiposPessoa { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Avaliacao> Avaliacaos { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Endereco> Enderecoes { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Atletas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
+            modelBuilder.Entity<TipoPessoa>().HasMany(e => e.Pessoas).WithRequired(e => e.TipoPessoa).WillCascadeOnDelete(false);
             modelBuilder.Entity<Atleta>().HasMany(e => e.Avaliacoes).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Pessoa>().HasMany(e => e.Enderecos).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
+
         }
 
-        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Avaliacao> Avaliacaos { get; set; }
     }
 }

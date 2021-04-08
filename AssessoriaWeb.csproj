@@ -245,6 +245,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AtletasController.cs" />
     <Compile Include="Controllers\AvaliacaosController.cs" />
+    <Compile Include="Controllers\EnderecoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,7 +255,9 @@
     <Compile Include="Models\Atleta.cs" />
     <Compile Include="Models\Avaliacao.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
+    <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa.cs" />
+    <Compile Include="Models\TipoPessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +312,11 @@
     <Content Include="Views\Avaliacaos\Details.cshtml" />
     <Content Include="Views\Avaliacaos\Edit.cshtml" />
     <Content Include="Views\Avaliacaos\Index.cshtml" />
+    <Content Include="Views\Enderecoes\Create.cshtml" />
+    <Content Include="Views\Enderecoes\Delete.cshtml" />
+    <Content Include="Views\Enderecoes\Details.cshtml" />
+    <Content Include="Views\Enderecoes\Edit.cshtml" />
+    <Content Include="Views\Enderecoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
