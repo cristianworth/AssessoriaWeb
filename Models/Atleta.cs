@@ -11,6 +11,7 @@ namespace AssessoriaWeb.Models
     public class Atleta
     {
         [Key]
+        [Display(Name = "Atleta")]
         public int atl_id { get; set; }
         [Display(Name = "Categoria")]
         public string atl_categoria { get; set; }

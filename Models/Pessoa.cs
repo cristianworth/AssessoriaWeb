@@ -14,7 +14,7 @@ namespace AssessoriaWeb.Models
         public int pes_id { get; set; }
         [Display(Name = "Nome")]
         public string pes_nome { get; set; }
-        [Display(Name = "Cpf")]
+        [Display(Name = "CPF")]
         public string pes_cpf { get; set; }
         [Display(Name = "Data de Nascimento")]
         public DateTime pes_datanascimento { get; set; }
