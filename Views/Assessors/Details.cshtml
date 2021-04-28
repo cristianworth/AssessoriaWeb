@@ -1,0 +1,34 @@
+﻿@model AssessoriaWeb.Models.Assessor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Assessor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pessoa.pes_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pessoa.pes_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ass_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ass_tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ass_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -55,8 +55,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -116,14 +116,11 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.3.1.8\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.8.0.23\lib\net452\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.0.24.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.8.0.24\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.Entity.6.10.7\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.EntityFramework, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.EntityFramework.8.0.11\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.24.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.EntityFramework.8.0.24\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MySqlConnector, Version=0.69.9.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.0.69.9\lib\net471\MySqlConnector.dll</HintPath>
@@ -224,7 +221,7 @@
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.8.0.23\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <HintPath>packages\MySql.Data.8.0.24\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -235,7 +232,7 @@
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>packages\MySql.Data.8.0.23\lib\net452\Zstandard.Net.dll</HintPath>
+      <HintPath>packages\MySql.Data.8.0.24\lib\net452\Zstandard.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -247,11 +244,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AssessorsController.cs" />
+    <Compile Include="Controllers\AtividadesController.cs" />
     <Compile Include="Controllers\AtletasController.cs" />
     <Compile Include="Controllers\AvaliacaosController.cs" />
     <Compile Include="Controllers\EnderecoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
+    <Compile Include="Controllers\TreinamentoesController.cs" />
+    <Compile Include="Controllers\TurmasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -325,6 +326,26 @@
     <Content Include="Views\Enderecoes\Details.cshtml" />
     <Content Include="Views\Enderecoes\Edit.cshtml" />
     <Content Include="Views\Enderecoes\Index.cshtml" />
+    <Content Include="Views\Assessors\Create.cshtml" />
+    <Content Include="Views\Assessors\Delete.cshtml" />
+    <Content Include="Views\Assessors\Details.cshtml" />
+    <Content Include="Views\Assessors\Edit.cshtml" />
+    <Content Include="Views\Assessors\Index.cshtml" />
+    <Content Include="Views\Treinamentoes\Create.cshtml" />
+    <Content Include="Views\Treinamentoes\Delete.cshtml" />
+    <Content Include="Views\Treinamentoes\Details.cshtml" />
+    <Content Include="Views\Treinamentoes\Edit.cshtml" />
+    <Content Include="Views\Treinamentoes\Index.cshtml" />
+    <Content Include="Views\Atividades\Create.cshtml" />
+    <Content Include="Views\Atividades\Delete.cshtml" />
+    <Content Include="Views\Atividades\Details.cshtml" />
+    <Content Include="Views\Atividades\Edit.cshtml" />
+    <Content Include="Views\Atividades\Index.cshtml" />
+    <Content Include="Views\Turmas\Create.cshtml" />
+    <Content Include="Views\Turmas\Delete.cshtml" />
+    <Content Include="Views\Turmas\Details.cshtml" />
+    <Content Include="Views\Turmas\Edit.cshtml" />
+    <Content Include="Views\Turmas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

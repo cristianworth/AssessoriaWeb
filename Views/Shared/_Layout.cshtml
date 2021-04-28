@@ -25,11 +25,14 @@
                     <li>@Html.ActionLink("Início", "Index", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
 
-                    @if (Session["PessoaId"] != null)
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Pessoa", "Index", "Pessoas")</li>
                         <li>@Html.ActionLink("Atleta", "Index", "Atletas")</li>
+                        <li>@Html.ActionLink("Assessor", "Index", "Assessors")</li>
                         <li>@Html.ActionLink("Avaliação", "Index", "Avaliacaos")</li>
+                        <li>@Html.ActionLink("Turma", "Index", "Turmas")</li>
+                        <li>@Html.ActionLink("Atividades", "Index", "Atividades")</li>
                         <li>@Html.ActionLink("Log Out", "LogOut", "Home")</li>
                     }
                     else

@@ -1,0 +1,58 @@
+﻿@model AssessoriaWeb.Models.Treinamento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Treinamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assessor.ass_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assessor.ass_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atleta.atl_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atleta.atl_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tre_data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tre_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tre_hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tre_hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tre_valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tre_valor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tre_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

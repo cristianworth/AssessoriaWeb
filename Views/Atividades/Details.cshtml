@@ -1,0 +1,34 @@
+﻿@model AssessoriaWeb.Models.Atividade
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Atividade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ati_descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ati_descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.atl_observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.atl_observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ati_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

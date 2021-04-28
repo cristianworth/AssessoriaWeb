@@ -25,7 +25,10 @@ namespace AssessoriaWeb.Models
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.TipoPessoa> TiposPessoa { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Avaliacao> Avaliacaos { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Endereco> Enderecoes { get; set; }
-
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Assessor> Assessors { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Treinamento> Treinamentoes { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Atividade> Atividades { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Turma> Turmas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +40,7 @@ namespace AssessoriaWeb.Models
             modelBuilder.Entity<Atleta>().HasMany(e => e.Treinamentos).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<TipoPessoa>().HasMany(e => e.Pessoas).WithRequired(e => e.TipoPessoa).WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Assessor>().HasMany(e => e.Treinamentos).WithRequired(e => e.Assessor).WillCascadeOnDelete(true);
             modelBuilder.Entity<Assessor>().HasMany(e => e.Turmas).WithRequired(e => e.Assessor).WillCascadeOnDelete(true);
 
