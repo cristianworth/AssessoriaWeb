@@ -1,5 +1,5 @@
 ﻿@model AssessoriaWeb.Models.Pessoa
-
+@using AssessoriaWeb.Helpers
 @{
     ViewBag.Title = "Edit";
 }
@@ -34,6 +34,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.pes_sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CustomDropdownListFor(model => model.pes_sexo, ViewBag.list_sexo as List<CustomHelpers.CustomSelectItem>, null, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.pes_sexo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.pes_datanascimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pes_datanascimento, new { htmlAttributes = new { @class = "form-control" } })
@@ -46,6 +54,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pes_telefone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pes_telefone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pes_email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pes_email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pes_email, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -65,10 +81,12 @@
             </div>
         </div>
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.tpp_id, "Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("tpp_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("tpp_id", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                @Html.HiddenFor(x => x.tpp_id)
                 @Html.ValidationMessageFor(model => model.tpp_id, "", new { @class = "text-danger" })
             </div>
         </div>

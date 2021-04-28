@@ -18,16 +18,19 @@
             @Html.DisplayNameFor(model => model.pes_cpf)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.pes_sexo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.pes_datanascimento)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.pes_telefone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pes_login)
+            @Html.DisplayNameFor(model => model.pes_email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pes_senha)
+            @Html.DisplayNameFor(model => model.pes_login)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TipoPessoa.tpp_descricao)
@@ -35,35 +38,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_cpf)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_datanascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pes_senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoPessoa.tpp_descricao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.pes_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.pes_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.pes_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_datanascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pes_login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPessoa.tpp_descricao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.pes_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.pes_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.pes_id })
+            </td>
+        </tr>
+    }
 
 </table>

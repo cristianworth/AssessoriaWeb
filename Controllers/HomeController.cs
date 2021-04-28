@@ -1,13 +1,17 @@
 ﻿using AssessoriaWeb.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace AssessoriaWeb.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
@@ -20,6 +24,7 @@ namespace AssessoriaWeb.Controllers
         {
             Session.Clear();
             Session.Abandon();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
 
@@ -29,13 +34,16 @@ namespace AssessoriaWeb.Controllers
             string redirecionar = "Login";
             if (ModelState.IsValid)
             {
-                var retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).Include(p => p.TipoPessoa).FirstOrDefault();
+                Pessoa retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).Include(p => p.TipoPessoa).FirstOrDefault();
                 if (retorno == null)
                 {
                     //login inválido
                     ViewBag.Message = "Usuário ou senha inválida";
                     return View();
                 }
+                dynamic user = new ExpandoObject();
+                user.login = retorno.pes_login;
+                user.autenticado = true;
 
                 switch (retorno.tpp_id)
                 {
@@ -51,6 +59,7 @@ namespace AssessoriaWeb.Controllers
                 }
                 Session["PessoaId"] = retorno.pes_id.ToString();
                 Session["PessoaNome"] = retorno.pes_nome;
+                System.Web.Security.FormsAuthentication.SetAuthCookie(user.login, false);
 
             }
             return RedirectToAction(redirecionar);

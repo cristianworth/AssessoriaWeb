@@ -20,6 +20,9 @@ namespace AssessoriaWeb.Models
         public DateTime pes_datanascimento { get; set; }
         [Display(Name = "Telefone")]
         public string pes_telefone { get; set; }
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string pes_email { get; set; }
         [Display(Name = "Sexo")]
         public char pes_sexo { get; set; }
         [Display(Name = "Login")]

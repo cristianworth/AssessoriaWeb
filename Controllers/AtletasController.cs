@@ -9,7 +9,8 @@ using System.Web.Mvc;
 using AssessoriaWeb.Models;
 
 namespace AssessoriaWeb.Controllers
-{
+{   
+    [Authorize]
     public class AtletasController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();

@@ -40,7 +40,7 @@ namespace AssessoriaWeb.Helpers
             dropdown.Attributes.Add("name", fullName);
             dropdown.MergeAttribute("data-val", "true");
             dropdown.MergeAttribute("data-val-required", "Mandatory field.");
-            dropdown.MergeAttribute("data-val-number", "The field must be a number.");
+            //dropdown.MergeAttribute("data-val-number", "The field must be a number.");
             dropdown.MergeAttributes(htmlAttributes); //dropdown.MergeAttributes(new RouteValueDictionary(htmlAttributes));
             dropdown.MergeAttributes(htmlHelper.GetUnobtrusiveValidationAttributes(name, metadata));
 

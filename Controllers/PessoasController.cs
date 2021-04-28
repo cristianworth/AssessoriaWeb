@@ -10,7 +10,8 @@ using AssessoriaWeb.Models;
 using static AssessoriaWeb.Helpers.CustomHelpers;
 
 namespace AssessoriaWeb.Controllers
-{
+{   
+    [Authorize]
     public class PessoasController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
@@ -29,6 +30,7 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Pessoa pessoa = db.Pessoas.Find(id);
             db.Entry(pessoa).Reference(p => p.TipoPessoa).Load();
 
@@ -42,6 +44,11 @@ namespace AssessoriaWeb.Controllers
         // GET: Pessoas/Create
         public ActionResult Create()
         {
+            IList<CustomSelectItem> list_sexo = new List<CustomSelectItem>(new[] {
+                new CustomSelectItem { Value = "F", SelectedValue = "Feminino", Text = "Feminino"},
+                new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino"}
+            });
+            ViewBag.list_sexo = list_sexo;
             ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
             return View();
         }
@@ -51,7 +58,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Create([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +78,11 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            IList<CustomSelectItem> list_sexo = new List<CustomSelectItem>(new[] {
+                new CustomSelectItem { Value = "F", SelectedValue = "Feminino", Text = "Feminino"},
+                new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino"}
+            });
+            ViewBag.list_sexo = list_sexo;
             Pessoa pessoa = db.Pessoas.Find(id);
             if (pessoa == null)
             {
@@ -86,7 +98,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Edit([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
         {
             if (ModelState.IsValid)
             {

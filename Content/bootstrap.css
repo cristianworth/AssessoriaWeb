@@ -2705,7 +2705,7 @@ fieldset[disabled] .form-control {
 }
 .form-control[disabled],
 fieldset[disabled] .form-control {
-  cursor: not-allowed;
+  cursor: default;
 }
 textarea.form-control {
   height: auto;
