@@ -7,27 +7,22 @@ using System.Web;
 
 namespace AssessoriaWeb.Models
 {
-    [Table("Atleta")]
-    public class Atleta
+    [Table("Assessor")]
+    public class Assessor
     {
         [Key]
-        [Display(Name = "Atleta")]
-        public int atl_id { get; set; }
-        [Display(Name = "Categoria")]
-        public string atl_categoria { get; set; }
-        [Display(Name = "Observação")]
-        public string atl_observacao { get; set; }
+        [Display(Name = "Assessor")]
+        public int ass_id { get; set; }
+        [Display(Name = "Tipo")]
+        public string ass_tipo { get; set; }
         [Display(Name = "Pessoa")]
         public int pes_id { get; set; }
         [Display(Name = "Pessoa")]
         public Pessoa Pessoa { get; set; }
-
-        public ICollection<Avaliacao> Avaliacoes { get; set; }
         public ICollection<Treinamento> Treinamentos { get; set; }
         public ICollection<Turma> Turmas { get; set; }
-        public Atleta()
+        public Assessor()
         {
-            Avaliacoes = new HashSet<Avaliacao>();
             Treinamentos = new HashSet<Treinamento>();
             Turmas = new HashSet<Turma>();
         }

@@ -32,11 +32,13 @@ namespace AssessoriaWeb.Models
         public int tpp_id { get; set; }
         public TipoPessoa TipoPessoa { get; set; }
         public ICollection<Atleta> Atletas { get; set; }
+        public ICollection<Assessor> Assessores { get; set; }
         public ICollection<Endereco> Enderecos { get; set; }
 
         public Pessoa()
         {
             Atletas = new HashSet<Atleta>();
+            Assessores = new HashSet<Assessor>();
             Enderecos = new HashSet<Endereco>();
         }
     }
