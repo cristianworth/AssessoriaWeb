@@ -18,8 +18,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pes_nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pes_nome, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.pes_nome, new { htmlAttributes = new { @class = "form-control" , required = "required", type = "name"} })
+                @Html.ValidationMessageFor(model => model.pes_nome, "TA ERRADO", new { @class = "text-danger" })
             </div>
         </div>
 

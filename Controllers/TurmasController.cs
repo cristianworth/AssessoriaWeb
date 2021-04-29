@@ -10,6 +10,7 @@ using AssessoriaWeb.Models;
 
 namespace AssessoriaWeb.Controllers
 {
+    [Authorize]
     public class TurmasController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();

@@ -10,6 +10,7 @@ using AssessoriaWeb.Models;
 
 namespace AssessoriaWeb.Controllers
 {
+    [Authorize]
     public class TreinamentoesController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
