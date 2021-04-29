@@ -1,0 +1,58 @@
+﻿@model AssessoriaWeb.Models.PlanoAlimentar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanoAlimentar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Atleta.atl_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atleta.atl_categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nutricionista.nut_crn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nutricionista.nut_crn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pln_datainicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln_datainicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pln_datafinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln_datafinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pla_plano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pla_plano)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pln_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -250,7 +250,9 @@
     <Compile Include="Controllers\AvaliacaosController.cs" />
     <Compile Include="Controllers\EnderecoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NutricionistasController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
+    <Compile Include="Controllers\PlanoAlimentaresController.cs" />
     <Compile Include="Controllers\TreinamentoesController.cs" />
     <Compile Include="Controllers\TurmasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +350,16 @@
     <Content Include="Views\Turmas\Details.cshtml" />
     <Content Include="Views\Turmas\Edit.cshtml" />
     <Content Include="Views\Turmas\Index.cshtml" />
+    <Content Include="Views\Nutricionistas\Create.cshtml" />
+    <Content Include="Views\Nutricionistas\Delete.cshtml" />
+    <Content Include="Views\Nutricionistas\Details.cshtml" />
+    <Content Include="Views\Nutricionistas\Edit.cshtml" />
+    <Content Include="Views\Nutricionistas\Index.cshtml" />
+    <Content Include="Views\PlanoAlimentares\Create.cshtml" />
+    <Content Include="Views\PlanoAlimentares\Delete.cshtml" />
+    <Content Include="Views\PlanoAlimentares\Details.cshtml" />
+    <Content Include="Views\PlanoAlimentares\Edit.cshtml" />
+    <Content Include="Views\PlanoAlimentares\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

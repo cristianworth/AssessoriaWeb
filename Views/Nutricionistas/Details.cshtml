@@ -1,0 +1,42 @@
+﻿@model AssessoriaWeb.Models.Nutricionista
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Nutricionista</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pessoa.pes_nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pessoa.pes_nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nut_crn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nut_crn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nut_cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nut_cnpj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.nut_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
