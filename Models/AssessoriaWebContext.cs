@@ -7,7 +7,7 @@ using MySql.Data.EntityFramework;
 
 namespace AssessoriaWeb.Models
 {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
+    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class AssessoriaWebContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
@@ -29,7 +29,8 @@ namespace AssessoriaWeb.Models
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Treinamento> Treinamentoes { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Atividade> Atividades { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Turma> Turmas { get; set; }
-
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.Nutricionista> Nutricionistas { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.PlanoAlimentar> PlanoAlimentars { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Atletas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
