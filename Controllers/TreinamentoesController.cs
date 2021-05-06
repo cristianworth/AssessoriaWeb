@@ -18,8 +18,9 @@ namespace AssessoriaWeb.Controllers
         // GET: Treinamentoes
         public ActionResult Index()
         {
-            var treinamentoes = db.Treinamentoes.Include(t => t.Assessor).Include(t => t.Atleta);
-            return View(treinamentoes.ToList());
+            var treinamentos = db.Treinamentoes.Include(p => p.Atleta).Include(a => a.Atleta.Pessoa);
+            treinamentos = treinamentos.Include(t => t.Assessor).Include(t => t.Assessor.Pessoa);
+            return View(treinamentos.ToList());
         }
 
         // GET: Treinamentoes/Details/5
@@ -30,6 +31,11 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Treinamento treinamento = db.Treinamentoes.Find(id);
+            db.Entry(treinamento).Reference(p => p.Atleta).Load();
+            db.Entry(treinamento.Atleta).Reference(p => p.Pessoa).Load();
+
+            db.Entry(treinamento).Reference(p => p.Assessor).Load();
+            db.Entry(treinamento.Assessor).Reference(p => p.Pessoa).Load();
             if (treinamento == null)
             {
                 return HttpNotFound();
@@ -40,8 +46,8 @@ namespace AssessoriaWeb.Controllers
         // GET: Treinamentoes/Create
         public ActionResult Create()
         {
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo");
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria");
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome");
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
             return View();
         }
 
@@ -59,8 +65,8 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", treinamento.ass_id);
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", treinamento.atl_id);
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
             return View(treinamento);
         }
 
@@ -76,8 +82,9 @@ namespace AssessoriaWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", treinamento.ass_id);
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", treinamento.atl_id);
+
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
             return View(treinamento);
         }
 
@@ -94,8 +101,9 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", treinamento.ass_id);
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", treinamento.atl_id);
+
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
             return View(treinamento);
         }
 

@@ -18,8 +18,9 @@ namespace AssessoriaWeb.Controllers
         // GET: PlanoAlimentares
         public ActionResult Index()
         {
-            var planoAlimentars = db.PlanoAlimentars.Include(p => p.Atleta).Include(p => p.Nutricionista);
-            return View(planoAlimentars.ToList());
+            var planoAlimentar = db.PlanoAlimentars.Include(p => p.Atleta).Include(a => a.Atleta.Pessoa);
+            planoAlimentar = planoAlimentar.Include(t => t.Nutricionista).Include(t => t.Nutricionista.Pessoa);
+            return View(planoAlimentar.ToList());
         }
 
         // GET: PlanoAlimentares/Details/5
@@ -30,6 +31,11 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PlanoAlimentar planoAlimentar = db.PlanoAlimentars.Find(id);
+            db.Entry(planoAlimentar).Reference(p => p.Atleta).Load();
+            db.Entry(planoAlimentar.Atleta).Reference(p => p.Pessoa).Load();
+
+            db.Entry(planoAlimentar).Reference(p => p.Nutricionista).Load();
+            db.Entry(planoAlimentar.Nutricionista).Reference(p => p.Pessoa).Load();
             if (planoAlimentar == null)
             {
                 return HttpNotFound();
@@ -40,8 +46,8 @@ namespace AssessoriaWeb.Controllers
         // GET: PlanoAlimentares/Create
         public ActionResult Create()
         {
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria");
-            ViewBag.nut_id = new SelectList(db.Nutricionistas, "nut_id", "nut_crn");
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
+            ViewBag.nut_id = new SelectList(db.Nutricionistas.Include(a => a.Pessoa), "nut_id", "Pessoa.pes_nome");
             return View();
         }
 
@@ -59,8 +65,8 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", planoAlimentar.atl_id);
-            ViewBag.nut_id = new SelectList(db.Nutricionistas, "nut_id", "nut_crn", planoAlimentar.nut_id);
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", planoAlimentar.atl_id);
+            ViewBag.nut_id = new SelectList(db.Nutricionistas.Include(a => a.Pessoa), "nut_id", "Pessoa.pes_nome", planoAlimentar.nut_id);
             return View(planoAlimentar);
         }
 
@@ -76,8 +82,9 @@ namespace AssessoriaWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", planoAlimentar.atl_id);
-            ViewBag.nut_id = new SelectList(db.Nutricionistas, "nut_id", "nut_crn", planoAlimentar.nut_id);
+
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", planoAlimentar.atl_id);
+            ViewBag.nut_id = new SelectList(db.Nutricionistas.Include(a => a.Pessoa), "nut_id", "Pessoa.pes_nome", planoAlimentar.nut_id);
             return View(planoAlimentar);
         }
 
@@ -94,8 +101,9 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.atl_id = new SelectList(db.Atletas, "atl_id", "atl_categoria", planoAlimentar.atl_id);
-            ViewBag.nut_id = new SelectList(db.Nutricionistas, "nut_id", "nut_crn", planoAlimentar.nut_id);
+
+            ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", planoAlimentar.atl_id);
+            ViewBag.nut_id = new SelectList(db.Nutricionistas.Include(a => a.Pessoa), "nut_id", "Pessoa.pes_nome", planoAlimentar.nut_id);
             return View(planoAlimentar);
         }
 
