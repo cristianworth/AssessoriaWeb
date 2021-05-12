@@ -19,7 +19,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Pessoas
         public ActionResult Index()
         {
-            var pessoas = db.Pessoas.Include(a => a.TipoPessoa);
+            var pessoas = db.Pessoas;
             return View(pessoas.ToList());
         }
 
@@ -32,7 +32,6 @@ namespace AssessoriaWeb.Controllers
             }
 
             Pessoa pessoa = db.Pessoas.Find(id);
-            db.Entry(pessoa).Reference(p => p.TipoPessoa).Load();
 
             if (pessoa == null)
             {
@@ -49,7 +48,6 @@ namespace AssessoriaWeb.Controllers
                 new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino"}
             });
             ViewBag.list_sexo = list_sexo;
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
             return View();
         }
 
@@ -58,7 +56,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Create([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,pes_sexo")] Pessoa pessoa)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +65,6 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
             return View(pessoa);
         }
 
@@ -78,18 +75,19 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            Pessoa pessoa = db.Pessoas.Find(id);
+
             IList<CustomSelectItem> list_sexo = new List<CustomSelectItem>(new[] {
-                new CustomSelectItem { Value = "F", SelectedValue = "Feminino", Text = "Feminino"},
-                new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino"}
+                new CustomSelectItem { Value = "F", SelectedValue = "Feminino", Text = "Feminino", Selected = pessoa.pes_sexo == "F"},
+                new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino", Selected = pessoa.pes_sexo == "F"}
             });
             ViewBag.list_sexo = list_sexo;
-            Pessoa pessoa = db.Pessoas.Find(id);
             if (pessoa == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
             return View(pessoa);
         }
 
@@ -98,7 +96,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,tpp_id")] Pessoa pessoa)
+        public ActionResult Edit([Bind(Include = "pes_id,pes_nome,pes_cpf,pes_datanascimento,pes_telefone,pes_email,pes_login,pes_senha,pes_sexo")] Pessoa pessoa)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +105,6 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.tpp_id = new SelectList(db.TiposPessoa, "tpp_id", "tpp_descricao");
             return View(pessoa);
         }
 

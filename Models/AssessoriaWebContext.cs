@@ -7,7 +7,7 @@ using MySql.Data.EntityFramework;
 
 namespace AssessoriaWeb.Models
 {
-    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class AssessoriaWebContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
@@ -22,7 +22,6 @@ namespace AssessoriaWeb.Models
 
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Pessoa> Pessoas { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Atleta> Atletas { get; set; }
-        public System.Data.Entity.DbSet<AssessoriaWeb.Models.TipoPessoa> TiposPessoa { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Avaliacao> Avaliacaos { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Endereco> Enderecoes { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Assessor> Assessors { get; set; }
@@ -40,8 +39,6 @@ namespace AssessoriaWeb.Models
             modelBuilder.Entity<Atleta>().HasMany(e => e.Avaliacoes).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);
             modelBuilder.Entity<Atleta>().HasMany(e => e.Treinamentos).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);
             modelBuilder.Entity<Atleta>().HasMany(e => e.PlanosAlimentares).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<TipoPessoa>().HasMany(e => e.Pessoas).WithRequired(e => e.TipoPessoa).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Assessor>().HasMany(e => e.Treinamentos).WithRequired(e => e.Assessor).WillCascadeOnDelete(true);
             modelBuilder.Entity<Assessor>().HasMany(e => e.Turmas).WithRequired(e => e.Assessor).WillCascadeOnDelete(true);

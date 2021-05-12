@@ -34,7 +34,7 @@ namespace AssessoriaWeb.Controllers
             string redirecionar = "Login";
             if (ModelState.IsValid)
             {
-                Pessoa retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).Include(p => p.TipoPessoa).FirstOrDefault();
+                Pessoa retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).FirstOrDefault();
                 if (retorno == null)
                 {
                     //login inválido
@@ -45,18 +45,7 @@ namespace AssessoriaWeb.Controllers
                 user.login = retorno.pes_login;
                 user.autenticado = true;
 
-                switch (retorno.tpp_id)
-                {
-                    case 1:
-                        redirecionar = "Index"; //redirecionar = "AtletaDashBoard";
-                        break;
-                    case 2:
-                        redirecionar = "Index"; //redirecionar = "AssessorDashBoard";
-                        break;
-                    default:
-                        redirecionar = "Index"; //redirecionar = "NutricionistaDashBoard";
-                        break;
-                }
+               
                 Session["PessoaId"] = retorno.pes_id.ToString();
                 Session["PessoaNome"] = retorno.pes_nome;
                 System.Web.Security.FormsAuthentication.SetAuthCookie(user.login, false);
