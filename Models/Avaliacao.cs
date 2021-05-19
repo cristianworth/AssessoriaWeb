@@ -12,7 +12,7 @@ namespace AssessoriaWeb.Models
     {
         [Key]
         public int ava_id { get; set; }
-        [Display(Name = "Data")]
+        [Display(Name = "Data"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ava_data { get; set; }
         [Display(Name = "Peso")]
         public decimal ava_peso { get; set; }

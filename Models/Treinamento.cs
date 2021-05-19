@@ -13,7 +13,7 @@ namespace AssessoriaWeb.Models
         [Key]
         [Display(Name = "Treinamento")]
         public int tre_id { get; set; }
-        [Display(Name = "Data")]
+        [Display(Name = "Data"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime tre_data { get; set; }
         [Display(Name = "Hora")]
         public TimeSpan tre_hora { get; set; }
