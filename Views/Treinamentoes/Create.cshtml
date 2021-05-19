@@ -74,15 +74,9 @@
 
 <script>
 $('.currency').change(function () {
-    var min = parseFloat($(this).attr("min"));
-    var max = parseFloat($(this).attr("max"));
     var value;
     if (value = this.valueAsNumber) {
     $(this).val(`${value.toFixed(2)}`.replace('.', ','));
     }
-    if (value < min)
-        value = min;
-    else if (value > max)
-        value = max;
 });
 </script>
