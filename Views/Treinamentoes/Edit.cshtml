@@ -36,7 +36,7 @@
                 <div class="form-group">
             @Html.LabelFor(model => model.tre_valor, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                @Html.EditorFor(model => model.tre_valor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.tre_valor, new { htmlAttributes = new { @class = "form-control currency", type="number", min = "0.00", max = "100000.00", step = "0.1" } })
                 @Html.ValidationMessageFor(model => model.tre_valor, "", new { @class = "text-danger" })
                     </div>
                 </div>
