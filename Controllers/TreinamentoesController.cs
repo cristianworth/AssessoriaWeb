@@ -30,12 +30,13 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Treinamento treinamento = db.Treinamentoes.Find(id);
             db.Entry(treinamento).Reference(p => p.Atleta).Load();
             db.Entry(treinamento.Atleta).Reference(p => p.Pessoa).Load();
-
             db.Entry(treinamento).Reference(p => p.Assessor).Load();
             db.Entry(treinamento.Assessor).Reference(p => p.Pessoa).Load();
+
             if (treinamento == null)
             {
                 return HttpNotFound();
@@ -114,7 +115,13 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Treinamento treinamento = db.Treinamentoes.Find(id);
+            db.Entry(treinamento).Reference(p => p.Atleta).Load();
+            db.Entry(treinamento.Atleta).Reference(p => p.Pessoa).Load();
+            db.Entry(treinamento).Reference(p => p.Assessor).Load();
+            db.Entry(treinamento.Assessor).Reference(p => p.Pessoa).Load();
+            
             if (treinamento == null)
             {
                 return HttpNotFound();

@@ -105,6 +105,8 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Avaliacao avaliacao = db.Avaliacaos.Find(id);
+            db.Entry(avaliacao).Reference(p => p.Atleta).Load();
+            db.Entry(avaliacao.Atleta).Reference(p => p.Pessoa).Load();
             if (avaliacao == null)
             {
                 return HttpNotFound();
