@@ -76,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_senha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pes_senha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.pes_senha, new { htmlAttributes = new { @class = "form-control", type = "password" } })
                 @Html.ValidationMessageFor(model => model.pes_senha, "", new { @class = "text-danger" })
             </div>
         </div>

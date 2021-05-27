@@ -30,6 +30,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Assessor assessor = db.Assessors.Find(id);
+            db.Entry(assessor).Reference(p => p.Pessoa).Load();
             if (assessor == null)
             {
                 return HttpNotFound();
@@ -103,6 +104,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Assessor assessor = db.Assessors.Find(id);
+            db.Entry(assessor).Reference(p => p.Pessoa).Load();
             if (assessor == null)
             {
                 return HttpNotFound();

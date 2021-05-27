@@ -30,6 +30,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Nutricionista nutricionista = db.Nutricionistas.Find(id);
+            db.Entry(nutricionista).Reference(p => p.Pessoa).Load();
             if (nutricionista == null)
             {
                 return HttpNotFound();
@@ -103,6 +104,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Nutricionista nutricionista = db.Nutricionistas.Find(id);
+            db.Entry(nutricionista).Reference(p => p.Pessoa).Load();
             if (nutricionista == null)
             {
                 return HttpNotFound();
