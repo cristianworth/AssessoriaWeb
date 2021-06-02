@@ -10,6 +10,71 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.w3-container-color {
+    color: #000000 ;
+    background-color: #ADD8E6;
+}
+.w3-container{
+    padding: 65px 0px;
+}
+
+.centered-column {
+    position: absolute;
+    top: 85%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-left {
+    position: absolute;
+    top: 80%;
+    left: 18%;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-right {
+    position: absolute;
+    top: 80%;
+    left: 34%;
+    transform: translate(-50%, -50%);
+}
+
+.responsive {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+}
+
+.fundinhoslider {
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+}
+
+.text-block {
+    position: absolute;
+    background-color: #E0FFFF;
+    color: black;
+    opacity: 0.8;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.text-block2 {
+    position: absolute;
+    background-color: white;
+    color: black;
+    opacity: 0.8;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.centered {
+    position: absolute;
+    top: 67%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
 
 /* Firefox */
 input[type=number] {
@@ -3409,6 +3474,7 @@ textarea.form-control {
 input[type="date"].form-control {
     padding: 0px 12px;
 }
+
 input[type="time"].form-control {
     padding: 0px 12px;
 }
@@ -7696,6 +7762,8 @@ button.close {
         .carousel-inner > .item > img,
         .carousel-inner > .item > a > img {
             line-height: 1;
+            height: 900px;
+            width: 1200px;
         }
 
 @media all and (transform-3d), (-webkit-transform-3d) {
