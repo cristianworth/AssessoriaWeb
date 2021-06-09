@@ -13,9 +13,9 @@ namespace AssessoriaWeb.Models
         [Key]
         [Display(Name = "PlanoAlimentar")]
         public int pln_id { get; set; }
-        [Display(Name = "Data Inicial")]
+        [Display(Name = "Data Inicial"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime pln_datainicial { get; set; }
-        [Display(Name = "Data Final")]
+        [Display(Name = "Data Final"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime pln_datafinal { get; set; }
         [Display(Name = "Plano Alimentar")]
         public string pla_plano { get; set; }

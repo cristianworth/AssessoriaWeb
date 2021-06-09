@@ -259,8 +259,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AtletaTurma.cs" />
     <Compile Include="Models\Nutricionista.cs" />
     <Compile Include="Models\PlanoAlimentar.cs" />
+    <Compile Include="Models\AtividadeTreinamento.cs" />
     <Compile Include="Models\Turma.cs" />
     <Compile Include="Models\Atividade.cs" />
     <Compile Include="Models\AssessoriaWebContext.cs" />

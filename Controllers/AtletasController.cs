@@ -104,6 +104,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Atleta atleta = db.Atletas.Find(id);
+            db.Entry(atleta).Reference(p => p.Pessoa).Load();
             if (atleta == null)
             {
                 return HttpNotFound();

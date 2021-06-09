@@ -18,7 +18,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Turmas
         public ActionResult Index()
         {
-            var turmas = db.Turmas.Include(t => t.Assessor);
+            var turmas = db.Turmas.Include(t => t.Assessor).Include(t => t.Assessor.Pessoa);
             return View(turmas.ToList());
         }
 
@@ -29,7 +29,11 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Turma turma = db.Turmas.Find(id);
+            db.Entry(turma).Reference(p => p.Assessor).Load();
+            db.Entry(turma.Assessor).Reference(p => p.Pessoa).Load();
+
             if (turma == null)
             {
                 return HttpNotFound();
@@ -40,7 +44,7 @@ namespace AssessoriaWeb.Controllers
         // GET: Turmas/Create
         public ActionResult Create()
         {
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo");
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome");
             return View();
         }
 
@@ -58,7 +62,7 @@ namespace AssessoriaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", turma.ass_id);
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", turma.ass_id);
             return View(turma);
         }
 
@@ -74,7 +78,7 @@ namespace AssessoriaWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", turma.ass_id);
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", turma.ass_id);
             return View(turma);
         }
 
@@ -91,7 +95,7 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ass_id = new SelectList(db.Assessors, "ass_id", "ass_tipo", turma.ass_id);
+            ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", turma.ass_id);
             return View(turma);
         }
 
@@ -102,7 +106,11 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Turma turma = db.Turmas.Find(id);
+            db.Entry(turma).Reference(p => p.Assessor).Load();
+            db.Entry(turma.Assessor).Reference(p => p.Pessoa).Load();
+
             if (turma == null)
             {
                 return HttpNotFound();
