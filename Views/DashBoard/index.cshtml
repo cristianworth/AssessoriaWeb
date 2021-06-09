@@ -1,0 +1,16 @@
+﻿
+@using AssessoriaWeb.Models;
+@{
+    ViewBag.Title = "Create";
+}
+@Styles.Render("~/Content/ScheduleDashBoardStyle.css")
+<div id="main">
+@{
+    Html.RenderAction("Schedule",DateTime.Now);
+}
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/ScheduleDashBoard.js")
+    @Scripts.Render("~/bundles/jqueryval")
+}

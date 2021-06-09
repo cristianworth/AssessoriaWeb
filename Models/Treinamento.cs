@@ -19,7 +19,8 @@ namespace AssessoriaWeb.Models
         public TimeSpan tre_hora { get; set; }
         [Display(Name = "Valor")]
         public decimal tre_valor { get; set; }
-
+        [Display(Name = "Descrição")]
+        public string tre_descricao { get; set; }
 
         [Display(Name = "Assessor")]
         public int ass_id { get; set; }

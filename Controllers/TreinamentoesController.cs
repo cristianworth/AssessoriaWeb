@@ -56,7 +56,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,ass_id,atl_id")] Treinamento treinamento)
+        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,ass_id,atl_id")] Treinamento treinamento)
+        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento)
         {
             if (ModelState.IsValid)
             {
