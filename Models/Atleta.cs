@@ -29,7 +29,7 @@ namespace AssessoriaWeb.Models
 
 
 
-        [Display(Name = "AtletaTurma")]
+        [Display(Name = "Turmas")]
         public ICollection<AtletaTurma> AtletaTurmas { get; set; }
         public Atleta()
         {

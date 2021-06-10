@@ -17,6 +17,8 @@ namespace AssessoriaWeb.Models
         public int ati_id { get; set; }
         [Display(Name = "Treinamento")]
         public int tre_id { get; set; }
+
+
         public AtividadeTreinamento()
         {
             

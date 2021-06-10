@@ -109,7 +109,7 @@ namespace AssessoriaWeb.Controllers
 
             foreach (int id in atletas)
             {
-                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id }); /*Adiciona os novos atletas na Turma*/
+                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id }); /*Adiciona os novos Atletas na Turma*/
             }
 
             if (ModelState.IsValid)

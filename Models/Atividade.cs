@@ -17,10 +17,13 @@ namespace AssessoriaWeb.Models
         public string ati_descricao { get; set; }
         [Display(Name = "Observação")]
         public string atl_observacao { get; set; }
-        public ICollection<Treinamento> Treinamentos { get; set; }
+
+
+        [Display(Name = "Treinamentos")]
+        public ICollection<AtividadeTreinamento> AtividadeTreinamentos { get; set; }
         public Atividade()
         {
-            Treinamentos = new HashSet<Treinamento>();
+            AtividadeTreinamentos = new HashSet<AtividadeTreinamento>();
         }
     }
 }

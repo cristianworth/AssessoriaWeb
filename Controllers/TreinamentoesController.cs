@@ -49,6 +49,8 @@ namespace AssessoriaWeb.Controllers
         {
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome");
             ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
+            ViewBag.atividades = new MultiSelectList(db.Atividades, "ati_id", "ati_descricao");
+
             return View();
         }
 
@@ -57,8 +59,13 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento)
+        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
         {
+            foreach (int id in atividades)
+            {
+                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
+            }
+
             if (ModelState.IsValid)
             {
                 db.Treinamentoes.Add(treinamento);
@@ -86,6 +93,8 @@ namespace AssessoriaWeb.Controllers
 
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
             ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
+            ViewBag.atividades = new MultiSelectList(db.Atividades, "ati_id", "ati_descricao");
+            ViewBag.atividadesSelecionadas = db.AtividadeTreinamentos.Where(x => x.tre_id == id).Select(x => x.ati_id).ToList<int>();
             return View(treinamento);
         }
 
@@ -94,10 +103,23 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento)
+        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
         {
+            List<AtividadeTreinamento> atividadesRelacionadas = db.AtividadeTreinamentos.Where(x => x.tre_id == treinamento.tre_id).ToList();
+            foreach (AtividadeTreinamento ati in atividadesRelacionadas)
+            {
+                db.AtividadeTreinamentos.Remove(ati); /*Remove todas as Atividades do Treinamento*/
+                db.SaveChanges();
+            }
+
+            foreach (int id in atividades)
+            {
+                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
+            }
+
             if (ModelState.IsValid)
             {
+                db.Treinamentoes.Add(treinamento);
                 db.Entry(treinamento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
