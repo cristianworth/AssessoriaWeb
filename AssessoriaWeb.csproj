@@ -67,6 +67,12 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -289,6 +295,103 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_editor.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_editor.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_editor.pkgd.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_editor.pkgd.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_style.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\froala_style.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins.pkgd.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins.pkgd.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\char_counter.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\char_counter.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\code_view.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\code_view.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\colors.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\colors.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\draggable.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\draggable.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\emoticons.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\emoticons.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\file.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\file.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\files_manager.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\files_manager.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\fullscreen.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\fullscreen.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\help.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\help.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\image.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\image.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\image_manager.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\image_manager.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\line_breaker.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\line_breaker.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\quick_insert.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\quick_insert.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\special_characters.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\special_characters.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\table.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\table.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\trim_video.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\trim_video.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\video.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\plugins\video.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\dark.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\dark.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\gray.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\gray.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\royal.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\themes\royal.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\embedly.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\embedly.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\font_awesome.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\font_awesome.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\image_tui.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\image_tui.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\spell_checker.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\css\third_party\spell_checker.min.css" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\froala_editor.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\froala_editor.pkgd.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\languages\pt_br.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins.pkgd.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\align.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\char_counter.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\code_beautifier.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\code_view.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\colors.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\cryptojs.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\draggable.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\edit_in_popup.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\emoticons.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\entities.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\file.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\files_manager.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\font_family.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\font_size.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\forms.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\fullscreen.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\help.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\inline_class.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\inline_style.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\line_breaker.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\line_height.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\link.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\lists.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\paragraph_format.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\paragraph_style.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\print.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\quick_insert.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\quote.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\save.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\special_characters.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\table.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\url.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\plugins\word_paste.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\third_party\embedly.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\third_party\font_awesome.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\third_party\image_tui.js" />
+    <Content Include="Scripts\froala_editor_3.2.6\js\third_party\spell_checker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

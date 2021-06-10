@@ -10,8 +10,8 @@ using AssessoriaWeb.Models;
 using static AssessoriaWeb.Helpers.CustomHelpers;
 
 namespace AssessoriaWeb.Controllers
-{   
-    [Authorize]
+{
+    [Authorize(Roles = "admin,assessor")]
     public class PessoasController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();

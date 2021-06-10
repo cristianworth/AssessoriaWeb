@@ -34,6 +34,7 @@ namespace AssessoriaWeb.Models
         {
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Atletas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Assessores).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Pessoa>().HasMany(e => e.Nutricionistas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Enderecos).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Atleta>().HasMany(e => e.Avaliacoes).WithRequired(e => e.Atleta).WillCascadeOnDelete(true);

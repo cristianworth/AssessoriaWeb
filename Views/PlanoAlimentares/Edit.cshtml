@@ -1,69 +1,69 @@
 ﻿@model AssessoriaWeb.Models.PlanoAlimentar
 
-@{
-    ViewBag.Title = "Edit";
-}
+@{ ViewBag.Title = "Edit"; }
 
 <h2>Edit</h2>
 
+@Styles.Render("~/bundles/froala/css")
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PlanoAlimentar</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.pln_id)
+@Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pln_datainicial, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.pln_datainicial, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.pln_datainicial, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <h4>PlanoAlimentar</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.pln_id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pln_datafinal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.pln_datafinal, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.pln_datafinal, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pln_datainicial, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.pln_datainicial, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(model => model.pln_datainicial, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pla_plano, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pla_plano, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pla_plano, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pln_datafinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.pln_datafinal, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(model => model.pln_datafinal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.atl_id, "Atleta", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("atl_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.atl_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nut_id, "Nutricionista", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nut_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.nut_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.atl_id, "Atleta", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("atl_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.atl_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nut_id, "Nutricionista", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("nut_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.nut_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pla_plano, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.pla_plano, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.pla_plano, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>}
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -71,4 +71,46 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/froala/js")
 }
+
+
+
+<script>
+    window.onload = () => {
+        new FroalaEditor('#pla_plano', {
+            theme: 'royal',
+            tabSpaces: 4,
+            fontSizeUnit: 'pt',
+            fontSize: ['8', '10', '12', '14', '18'],
+            pasteDeniedAttrs: ['class', 'id'],
+            wordPasteModal: false,
+            useClasses: false,
+            height: 200,
+            wordAllowedStyleProps: [],
+            fileUpload: false,
+            imagePaste: false,
+            imageUpload: false,
+            videoUpload: false,
+            quickInsertEnabled: false,
+            language: "pt_br",
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttonsVisible': 2,
+                    'buttons': ['insertLink', 'insertTable', 'specialCharacters', 'embedly', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'print', 'spellChecker', 'selectAll', 'help'],
+                    'align': 'right',
+                    'buttonsVisible': 2
+                }
+            }
+        });
+    }
+</script>

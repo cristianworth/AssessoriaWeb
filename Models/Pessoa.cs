@@ -32,6 +32,7 @@ namespace AssessoriaWeb.Models
         public string pes_senha { get; set; }
         public ICollection<Atleta> Atletas { get; set; }
         public ICollection<Assessor> Assessores { get; set; }
+        public ICollection<Nutricionista> Nutricionistas { get; set; }
         public ICollection<Endereco> Enderecos { get; set; }
 
         public Pessoa()
@@ -39,6 +40,7 @@ namespace AssessoriaWeb.Models
             Atletas = new HashSet<Atleta>();
             Assessores = new HashSet<Assessor>();
             Enderecos = new HashSet<Endereco>();
+            Nutricionistas = new HashSet<Nutricionista>();
         }
     }
 }

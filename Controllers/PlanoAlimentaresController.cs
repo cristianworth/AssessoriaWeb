@@ -10,7 +10,7 @@ using AssessoriaWeb.Models;
 
 namespace AssessoriaWeb.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin,nutricionista")]
     public class PlanoAlimentaresController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
@@ -56,6 +56,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "pln_id,pln_datainicial,pln_datafinal,pla_plano,atl_id,nut_id")] PlanoAlimentar planoAlimentar)
         {
             if (ModelState.IsValid)
@@ -93,6 +94,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "pln_id,pln_datainicial,pln_datafinal,pla_plano,atl_id,nut_id")] PlanoAlimentar planoAlimentar)
         {
             if (ModelState.IsValid)

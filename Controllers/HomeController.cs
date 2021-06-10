@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 
 namespace AssessoriaWeb.Controllers
@@ -34,21 +36,52 @@ namespace AssessoriaWeb.Controllers
             string redirecionar = "Login";
             if (ModelState.IsValid)
             {
-                Pessoa retorno = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).FirstOrDefault();
-                if (retorno == null)
+                pessoa = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).FirstOrDefault();
+                db.Entry(pessoa).Collection(p => p.Assessores).Load();
+                db.Entry(pessoa).Collection(p => p.Atletas).Load();
+                db.Entry(pessoa).Collection(p => p.Nutricionistas).Load();
+                if (pessoa == null)
                 {
                     //login inválido
                     ViewBag.Message = "Usuário ou senha inválida";
                     return View();
                 }
-                dynamic user = new ExpandoObject();
-                user.login = retorno.pes_login;
-                user.autenticado = true;
+                List<string> roles = new List<string>();
+                if (pessoa.Assessores.Count() > 0)
+                {
+                    roles.Add("assessor");
+                }
+                if (pessoa.Atletas.Count() > 0)
+                {
+                    roles.Add("atleta");
+                }  
+                if (pessoa.Nutricionistas.Count() > 0)
+                {
+                    roles.Add("nutricionista");
+                }
+                if (pessoa.pes_login == "admin")
+                {
+                    roles.Add("admin");
+                }
 
-               
-                Session["PessoaId"] = retorno.pes_id.ToString();
-                Session["PessoaNome"] = retorno.pes_nome;
-                System.Web.Security.FormsAuthentication.SetAuthCookie(user.login, false);
+                Session["pes_id"] = pessoa.pes_id.ToString();
+                Session["pes_nome"] = pessoa.pes_nome;
+                Session["pes_login"] = pessoa.pes_login;
+                Session["roles"] = roles.ToArray();
+
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+                        1,
+                        pessoa.pes_login,
+                        DateTime.Now,
+                        DateTime.Now.AddMinutes(15),
+                        false,
+                        serializer.Serialize(roles.ToArray()));
+
+                string encTicket = FormsAuthentication.Encrypt(authTicket);
+                HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                Response.Cookies.Add(faCookie);
+                //System.Web.Security.FormsAuthentication.SetAuthCookie(pessoa.pes_login, true);
 
             }
             return RedirectToAction(redirecionar);

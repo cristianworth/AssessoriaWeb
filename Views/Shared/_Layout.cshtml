@@ -27,16 +27,28 @@
 
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Pessoa", "Index", "Pessoas")</li>
-                        <li>@Html.ActionLink("Atleta", "Index", "Atletas")</li>
-                        <li>@Html.ActionLink("Assessor", "Index", "Assessors")</li>
-                        <li>@Html.ActionLink("Nutricionista", "Index", "Nutricionistas")</li>
-                        <li>@Html.ActionLink("Avaliação", "Index", "Avaliacaos")</li>
-                        <li>@Html.ActionLink("Turma", "Index", "Turmas")</li>
-                        <li>@Html.ActionLink("Treinamento", "Index", "Treinamentoes")</li>
-                        <li>@Html.ActionLink("Atividades", "Index", "Atividades")</li>
-                        <li>@Html.ActionLink("Plano alimentar", "Index", "PlanoAlimentares")</li>
-                        <li>@Html.ActionLink("Dashboard", "Index", "DashBoard")</li>
+                        if (HttpContext.Current.User.IsInRole("assessor") || HttpContext.Current.User.IsInRole("admin"))
+                        {
+                            <li>@Html.ActionLink("Pessoa", "Index", "Pessoas")</li>
+                            <li>@Html.ActionLink("Atleta", "Index", "Atletas")</li>
+                            <li>@Html.ActionLink("Assessor", "Index", "Assessors")</li>
+                            <li>@Html.ActionLink("Nutricionista", "Index", "Nutricionistas")</li>
+                        }
+                        if (User.IsInRole("assessor") || User.IsInRole("admin"))
+                        {
+                            <li>@Html.ActionLink("Avaliação", "Index", "Avaliacaos")</li>
+                            <li>@Html.ActionLink("Turma", "Index", "Turmas")</li>
+                            <li>@Html.ActionLink("Treinamento", "Index", "Treinamentoes")</li>
+                            <li>@Html.ActionLink("Atividades", "Index", "Atividades")</li>
+                        }
+                        if (User.IsInRole("assessor") || User.IsInRole("nutricionista") || User.IsInRole("admin"))
+                        {
+                            <li>@Html.ActionLink("Plano alimentar", "Index", "PlanoAlimentares")</li>
+                        }
+                        if (User.IsInRole("assessor") || User.IsInRole("atleta"))
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Index", "DashBoard")</li>
+                        }
                         <li>@Html.ActionLink("Log Out", "LogOut", "Home")</li>
                     }
                     else

@@ -13,7 +13,7 @@ using AssessoriaWeb.Models;
 
 namespace AssessoriaWeb.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin,assessor,atleta")]
     public class DashBoardController : Controller
     {
         private AssessoriaWebContext db = new AssessoriaWebContext();
@@ -32,8 +32,8 @@ namespace AssessoriaWeb.Controllers
 
             DateTime startOfWeek = date.AddDays(-1 * (int)(date.DayOfWeek));
             DateTime endOfWeek = startOfWeek.AddDays(6);
-
-            IList<Treinamento> lista = db.Treinamentoes.Where(tre => tre.atl_id == 1 && tre.tre_data >= startOfWeek && tre.tre_data <= endOfWeek).Include(tre => tre.Assessor.Pessoa).ToList();
+            int pes_id = Convert.ToInt32(Session["pes_id"]);
+            IList<Treinamento> lista = db.Treinamentoes.Where(tre => tre.atl_id == pes_id && tre.tre_data >= startOfWeek && tre.tre_data <= endOfWeek).Include(tre => tre.Assessor.Pessoa).ToList();
             ViewBag.Date = date;
             ViewBag.startOfWeek = startOfWeek.ToString("dd/MM");
             ViewBag.endOfWeek = endOfWeek.ToString("dd/MM");

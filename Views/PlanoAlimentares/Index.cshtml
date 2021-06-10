@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.pln_datafinal)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.pla_plano)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -43,9 +43,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.pln_datafinal)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.pla_plano)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.pln_id }) |
             @Html.ActionLink("Details", "Details", new { id=item.pln_id }) |
