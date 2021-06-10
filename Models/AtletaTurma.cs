@@ -10,10 +10,16 @@ namespace AssessoriaWeb.Models
     [Table("AtletaTurma")]
     public class AtletaTurma
     {
+        [Key]
+        [Display(Name = "AtletaTurma")]
+        public int att_id { get; set; }
+
         [Display(Name = "Atleta")]
         public int atl_id { get; set; }
         [Display(Name = "Turma")]
         public int trm_id { get; set; }
+
+
         public AtletaTurma()
         {
             

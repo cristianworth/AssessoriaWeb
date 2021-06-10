@@ -27,10 +27,14 @@ namespace AssessoriaWeb.Models
         [Display(Name = "Assessor")]
         public Assessor Assessor { get; set; }
 
-        public ICollection<Atleta> Atletas { get; set; }
+
+
+
+        [Display(Name = "Atletas")]
+        public ICollection<AtletaTurma> AtletaTurmas { get; set; }
         public Turma()
         {
-            Atletas = new HashSet<Atleta>();
+            AtletaTurmas = new HashSet<AtletaTurma>();
         }
     }
 }

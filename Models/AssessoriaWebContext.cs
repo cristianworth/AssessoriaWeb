@@ -30,6 +30,8 @@ namespace AssessoriaWeb.Models
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Turma> Turmas { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.Nutricionista> Nutricionistas { get; set; }
         public System.Data.Entity.DbSet<AssessoriaWeb.Models.PlanoAlimentar> PlanoAlimentars { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.AtletaTurma> AtletaTurmas { get; set; }
+        public System.Data.Entity.DbSet<AssessoriaWeb.Models.AtividadeTreinamento> AtividadeTreinamentos { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pessoa>().HasMany(e => e.Atletas).WithRequired(e => e.Pessoa).WillCascadeOnDelete(true);
@@ -47,7 +49,21 @@ namespace AssessoriaWeb.Models
 
             /*N pra N*/
             modelBuilder.Entity<Treinamento>().HasMany(e => e.Atividades).WithMany(e => e.Treinamentos);
-            modelBuilder.Entity<Atleta>().HasMany(e => e.Turmas).WithMany(e => e.Atletas);
+            
+            /*Inicio da relação N pra N de AtletaTurma*/
+            modelBuilder.Entity<AtletaTurma>()
+                .HasKey(c => new { c.atl_id, c.trm_id });
+
+            modelBuilder.Entity<Atleta>()
+                .HasMany(c => c.AtletaTurmas)
+                .WithRequired()
+                .HasForeignKey(c => c.atl_id);
+
+            modelBuilder.Entity<Turma>()
+                .HasMany(c => c.AtletaTurmas)
+                .WithRequired()
+                .HasForeignKey(c => c.trm_id);
+            /*Fim da relação N pra N de AtletaTurma*/
 
         }
 

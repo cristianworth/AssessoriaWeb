@@ -24,14 +24,19 @@ namespace AssessoriaWeb.Models
 
         public ICollection<Avaliacao> Avaliacoes { get; set; }
         public ICollection<Treinamento> Treinamentos { get; set; }
-        public ICollection<Turma> Turmas { get; set; }
         public ICollection<PlanoAlimentar> PlanosAlimentares { get; set; }
+
+
+
+
+        [Display(Name = "AtletaTurma")]
+        public ICollection<AtletaTurma> AtletaTurmas { get; set; }
         public Atleta()
         {
             Avaliacoes = new HashSet<Avaliacao>();
             Treinamentos = new HashSet<Treinamento>();
-            Turmas = new HashSet<Turma>();
             PlanosAlimentares = new HashSet<PlanoAlimentar>();
+            AtletaTurmas = new HashSet<AtletaTurma>();
         }
     }
 }

@@ -45,6 +45,8 @@ namespace AssessoriaWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome");
+            ViewBag.atletas = new MultiSelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
+
             return View();
         }
 
@@ -53,8 +55,13 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma)
+        public ActionResult Create([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma, int[] atletas)
         {
+            foreach (int id in atletas)
+            {
+                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id });
+            }
+
             if (ModelState.IsValid)
             {
                 db.Turmas.Add(turma);
@@ -74,11 +81,13 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Turma turma = db.Turmas.Find(id);
+            //turma.AtletaTurmas = db.AtletaTurmas.Where(x => x.trm_id == id).ToList();
             if (turma == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", turma.ass_id);
+            ViewBag.atletas = new MultiSelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
             return View(turma);
         }
 
@@ -87,8 +96,13 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma)
+        public ActionResult Edit([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma, int[] atletas)
         {
+            /*foreach (int id in atletas)
+            {
+                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id });
+            }*/
+
             if (ModelState.IsValid)
             {
                 db.Entry(turma).State = EntityState.Modified;
