@@ -1,5 +1,5 @@
 # AssessoriaWeb
-AssessoriaWeb é um trabalho da disciplina de Projeto Integrador 3 da UNIJUI <br/>
+AssessoriaWeb é um trabalho da disciplina de Projeto Integrador 2 da UNIJUI <br/>
 O sistema permite cadastrar turmas, avaliações e treinamentos para fazer o controle de Atletas dentro de uma Assessoria
 ### Dependências
 * Nuget MySql.Data
