@@ -10,10 +10,15 @@ namespace AssessoriaWeb.Models
     [Table("AtividadeTreinamento")]
     public class AtividadeTreinamento
     {
+        [Key]
+        [Display(Name = "AtividadeTreinamento")]
+        public int atr_id { get; set; }
         [Display(Name = "Atividade")]
         public int ati_id { get; set; }
         [Display(Name = "Treinamento")]
         public int tre_id { get; set; }
+
+
         public AtividadeTreinamento()
         {
             

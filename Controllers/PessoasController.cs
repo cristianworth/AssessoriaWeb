@@ -83,6 +83,7 @@ namespace AssessoriaWeb.Controllers
                 new CustomSelectItem { Value = "M", SelectedValue = "Masculino", Text = "Masculino", Selected = pessoa.pes_sexo == "F"}
             });
             ViewBag.list_sexo = list_sexo;
+            ViewBag.sexoSelecionado = pessoa.pes_sexo;
             if (pessoa == null)
             {
                 return HttpNotFound();

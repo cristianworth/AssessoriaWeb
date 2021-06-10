@@ -31,10 +31,13 @@ namespace AssessoriaWeb.Models
         public int atl_id { get; set; }
         [Display(Name = "Atleta")]
         public Atleta Atleta { get; set; }
-        public ICollection<Atividade> Atividades { get; set; }
+
+
+        [Display(Name = "Atividades")]
+        public ICollection<AtividadeTreinamento> AtividadeTreinamentos { get; set; }
         public Treinamento()
         {
-            Atividades = new HashSet<Atividade>();
+            AtividadeTreinamentos = new HashSet<AtividadeTreinamento>();
         }
     }
 }

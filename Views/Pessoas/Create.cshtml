@@ -34,8 +34,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_sexo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.CustomDropdownListFor(model => model.pes_sexo, ViewBag.list_sexo as List<CustomHelpers.CustomSelectItem>, null, "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.pes_sexo, "", new { @class = "text-danger" })
+                @Html.CustomDropdownListFor(model => model.pes_sexo, ViewBag.list_sexo as List<CustomHelpers.CustomSelectItem>, null, "", new { @class = "form-control", @id = "pes_sexo" })
+                @Html.ValidationMessageFor(model => model.pes_sexo, "Sexo é um campo obrigatório", new { @class = "text-danger" })
             </div>
         </div>
 
