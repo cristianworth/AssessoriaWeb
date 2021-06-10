@@ -68,7 +68,7 @@ namespace AssessoriaWeb.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Fale Com a Gente";
 
             return View();
         }
