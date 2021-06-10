@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AssessoriaWeb.Models;
+using System.Data.Entity.Migrations;
 
 namespace AssessoriaWeb.Controllers
 {
@@ -80,14 +81,15 @@ namespace AssessoriaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Turma turma = db.Turmas.Find(id);
-            //turma.AtletaTurmas = db.AtletaTurmas.Where(x => x.trm_id == id).ToList();
             if (turma == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", turma.ass_id);
             ViewBag.atletas = new MultiSelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome");
+            ViewBag.atletasSelecionados = db.AtletaTurmas.Where(x => x.trm_id == id).Select(x => x.atl_id).ToList<int>();
             return View(turma);
         }
 
@@ -98,13 +100,21 @@ namespace AssessoriaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma, int[] atletas)
         {
-            /*foreach (int id in atletas)
+            List<AtletaTurma> atletasRelacionados = db.AtletaTurmas.Where(x => x.trm_id == turma.trm_id).ToList(); 
+            foreach (AtletaTurma atl in atletasRelacionados)
             {
-                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id });
-            }*/
+                db.AtletaTurmas.Remove(atl); /*Remove todos os Atletas da Turma*/
+                db.SaveChanges();
+            }
+
+            foreach (int id in atletas)
+            {
+                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id }); /*Adiciona os novos atletas na Turma*/
+            }
 
             if (ModelState.IsValid)
             {
+                db.Turmas.Add(turma);
                 db.Entry(turma).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
