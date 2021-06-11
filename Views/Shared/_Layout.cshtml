@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <title>AssessoriaWeb</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,21 +19,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <img src="/Imagens/logo_timeholz.png" alt="logo_timeholz" width="55" height="55">
+                @Html.ActionLink("Time Holz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "font-family: cursive; font-weight: bold;" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         if (HttpContext.Current.User.IsInRole("assessor") || HttpContext.Current.User.IsInRole("admin"))
                         {
-                            <li>@Html.ActionLink("Pessoa", "Index", "Pessoas")</li>
-                            <li>@Html.ActionLink("Atleta", "Index", "Atletas")</li>
-                            <li>@Html.ActionLink("Assessor", "Index", "Assessors")</li>
-                            <li>@Html.ActionLink("Nutricionista", "Index", "Nutricionistas")</li>
+                            <li>
+                                <a class="btn btn-primary dropdown-toggle glyphicon glyphicon-menu-down" data-toggle="dropdown">
+                                    Pessoas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Usuário", "Index", "Pessoas")</li>
+                                    <li>@Html.ActionLink("Atleta", "Index", "Atletas")</li>
+                                    <li>@Html.ActionLink("Assessor", "Index", "Assessors")</li>
+                                    <li>@Html.ActionLink("Nutricionista", "Index", "Nutricionistas")</li>
+                                </ul>
+                            </li>
                         }
                         if (User.IsInRole("assessor") || User.IsInRole("admin"))
                         {
@@ -50,11 +55,24 @@
                         {
                             <li>@Html.ActionLink("Dashboard", "Index", "DashBoard")</li>
                         }
-                        <li>@Html.ActionLink("Log Out", "LogOut", "Home")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Log In", "Login", "Home")</li>
+                        <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav" style="float:right">
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Log Out", "LogOut", "Home")
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("Log In", "Login", "Home")
+                        </li>
                     }
                 </ul>
             </div>
@@ -63,11 +81,6 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="text-right">
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-twitter"></a>
-            <a href="#" class="fa fa-instagram"></a>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
