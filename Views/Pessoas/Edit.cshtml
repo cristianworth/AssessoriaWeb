@@ -1,7 +1,7 @@
 ﻿@model AssessoriaWeb.Models.Pessoa
 @using AssessoriaWeb.Helpers
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
 
 <h2>Editar</h2>
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Pessoa</h4>
+    <h4>Usuário</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.pes_id)

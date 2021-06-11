@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<AssessoriaWeb.Models.Atividade>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Atividades";
 }
 
-<h2>Index</h2>
+<h2>Lista de Atividades</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-success create glyphicon glyphicon-plus" })
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.atl_observacao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ati_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ati_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ati_id })
+            @Html.ActionLink(" ", "Details", new { id = item.ati_id }, new { @class = "btn btn-success details glyphicon glyphicon-search" })
+            @Html.ActionLink(" ", "Delete", new { id = item.ati_id }, new { @class = "btn btn-danger delete glyphicon glyphicon-trash" })
+            @Html.ActionLink(" ", "Edit", new { id = item.ati_id }, new { @class = "btn btn-primary edit glyphicon glyphicon-edit" })
         </td>
     </tr>
 }

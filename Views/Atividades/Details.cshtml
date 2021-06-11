@@ -1,10 +1,10 @@
 ﻿@model AssessoriaWeb.Models.Atividade
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>Atividade</h4>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ati_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ati_id }, new { @class = "btn btn-primary edit glyphicon glyphicon-edit" })
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
 </p>

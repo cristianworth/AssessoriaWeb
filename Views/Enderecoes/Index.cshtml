@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<AssessoriaWeb.Models.Endereco>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Endereços";
 }
 
-<h2>Index</h2>
+<h2>Lista de Endereços</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-success create glyphicon glyphicon-plus" })
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.end_cep)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.end_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.end_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.end_id })
+            @Html.ActionLink(" ", "Details", new { id = item.ass_id }, new { @class = "btn btn-success details glyphicon glyphicon-search" })
+            @Html.ActionLink(" ", "Delete", new { id = item.ass_id }, new { @class = "btn btn-danger delete glyphicon glyphicon-trash" })
+            @Html.ActionLink(" ", "Edit", new { id = item.ass_id }, new { @class = "btn btn-primary edit glyphicon glyphicon-edit" })
         </td>
     </tr>
 }

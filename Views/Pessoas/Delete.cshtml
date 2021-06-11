@@ -1,14 +1,14 @@
 ﻿@model AssessoriaWeb.Models.Pessoa
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar";
 }
 
-<h2>Delete</h2>
+<h2>Deletar</h2>
 
 <h3>Deseja deletar este registro ?</h3>
 <div>
-    <h4>Pessoa</h4>
+    <h4>Usuário</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,14 +57,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.pes_login)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pes_senha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pes_senha)
         </dd>
 
     </dl>

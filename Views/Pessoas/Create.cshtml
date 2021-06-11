@@ -1,7 +1,7 @@
 ﻿@model AssessoriaWeb.Models.Pessoa
 @using AssessoriaWeb.Helpers
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Cadastrar";
 }
 
 <h2>Cadastrar</h2>
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Pessoa</h4>
+    <h4>Usuário</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
