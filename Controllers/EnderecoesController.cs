@@ -30,6 +30,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Endereco endereco = db.Enderecoes.Find(id);
+            db.Entry(endereco).Reference(p => p.Pessoa).Load();
             if (endereco == null)
             {
                 return HttpNotFound();
@@ -103,6 +104,7 @@ namespace AssessoriaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Endereco endereco = db.Enderecoes.Find(id);
+            db.Entry(endereco).Reference(p => p.Pessoa).Load();
             if (endereco == null)
             {
                 return HttpNotFound();
