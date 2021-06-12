@@ -61,9 +61,12 @@ namespace AssessoriaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
         {
-            foreach (int id in atividades)
+            if (atividades != null)
             {
-                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
+                foreach (int id in atividades)
+                {
+                    treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
+                }
             }
 
             if (ModelState.IsValid)
@@ -112,9 +115,12 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
             }
 
-            foreach (int id in atividades)
+            if (atividades != null)
             {
-                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
+                foreach (int id in atividades)
+                {
+                    treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
+                }
             }
 
             if (ModelState.IsValid)
