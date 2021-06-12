@@ -32,6 +32,14 @@ namespace AssessoriaWeb
 
             bundles.Add(new StyleBundle("~/bundles/froala/css").IncludeDirectory(
             "~/Scripts/froala_editor_3.2.6/css", "*.css", true));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/Select/js").IncludeDirectory(
+                        "~/Scripts/Select/js", "*.js", true));
+
+            bundles.Add(new StyleBundle("~/bundles/Select/css").IncludeDirectory(
+            "~/Scripts/Select/css", "*.css", true));
+
         }
     }
 }

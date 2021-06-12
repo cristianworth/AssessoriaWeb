@@ -143,5 +143,13 @@ namespace AssessoriaWeb.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult ValidateDate(DateTime pln_datainicial, DateTime pln_datafinal)
+        {
+            if (pln_datainicial <= pln_datafinal)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json("A data final não pode ser maior que a data inicial", JsonRequestBehavior.AllowGet);
+        }
     }
 }

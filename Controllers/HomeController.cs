@@ -33,19 +33,20 @@ namespace AssessoriaWeb.Controllers
         [HttpPost]
         public ActionResult Login(Pessoa pessoa)
         {
-            string redirecionar = "Login";
+            string action = "Index";
+            string controller = "Home";
             if (ModelState.IsValid)
             {
                 pessoa = db.Pessoas.Where(x => x.pes_login.Equals(pessoa.pes_login) && x.pes_senha.Equals(pessoa.pes_senha)).FirstOrDefault();
-                db.Entry(pessoa).Collection(p => p.Assessores).Load();
-                db.Entry(pessoa).Collection(p => p.Atletas).Load();
-                db.Entry(pessoa).Collection(p => p.Nutricionistas).Load();
                 if (pessoa == null)
                 {
                     //login inválido
                     ViewBag.Message = "Usuário ou senha inválida";
                     return View();
                 }
+                db.Entry(pessoa).Collection(p => p.Assessores).Load();
+                db.Entry(pessoa).Collection(p => p.Atletas).Load();
+                db.Entry(pessoa).Collection(p => p.Nutricionistas).Load();
                 List<string> roles = new List<string>();
                 if (pessoa.Assessores.Count() > 0)
                 {
@@ -54,6 +55,8 @@ namespace AssessoriaWeb.Controllers
                 if (pessoa.Atletas.Count() > 0)
                 {
                     roles.Add("atleta");
+                     action = "Index";
+                     controller = "DashBoard";
                 }  
                 if (pessoa.Nutricionistas.Count() > 0)
                 {
@@ -75,7 +78,7 @@ namespace AssessoriaWeb.Controllers
                         pessoa.pes_login,
                         DateTime.Now,
                         DateTime.Now.AddMinutes(15),
-                        false,
+                        true,
                         serializer.Serialize(roles.ToArray()));
 
                 string encTicket = FormsAuthentication.Encrypt(authTicket);
@@ -84,7 +87,7 @@ namespace AssessoriaWeb.Controllers
                 //System.Web.Security.FormsAuthentication.SetAuthCookie(pessoa.pes_login, true);
 
             }
-            return RedirectToAction(redirecionar);
+            return RedirectToAction(action, controller);
         }
 
         public ActionResult Index()

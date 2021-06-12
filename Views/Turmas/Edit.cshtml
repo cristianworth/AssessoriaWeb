@@ -11,82 +11,86 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Turma</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.trm_id)
+<div class="form-horizontal">
+    <h4>Turma</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.trm_id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.trm_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.trm_descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.trm_descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.trm_observacao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.trm_observacao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.trm_observacao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.trm_HoraInicial, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.trm_HoraInicial, new { htmlAttributes = new { @class = "form-control", type = "time" } })
-                @Html.ValidationMessageFor(model => model.trm_HoraInicial, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.trm_HoraFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.trm_HoraFinal, new { htmlAttributes = new { @class = "form-control", type = "time" } })
-                @Html.ValidationMessageFor(model => model.trm_HoraFinal, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ass_id, "Assessor", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ass_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ass_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AtletaTurmas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ListBox("atletas", (MultiSelectList)ViewBag.atletas, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AtletaTurmas, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.trm_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trm_descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.trm_descricao, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trm_observacao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trm_observacao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.trm_observacao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trm_HoraInicial, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trm_HoraInicial, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+            @Html.ValidationMessageFor(model => model.trm_HoraInicial, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.trm_HoraFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.trm_HoraFinal, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+            @Html.ValidationMessageFor(model => model.trm_HoraFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ass_id, "Assessor", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ass_id", null, "", htmlAttributes: new { @class = "form-control required", @data_placeholder = "Assessor...", @data_val = "true", @data_val_required = "Selecione um Assessor!" })
+            @Html.ValidationMessageFor(model => model.ass_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AtletaTurmas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBox("atletas", (MultiSelectList)ViewBag.atletas, new { @class = "form-control required", @data_placeholder = "Atletas...", @data_val_required = "Selecione ao menos um Atletas!", @data_allow_clear = "true" })
+            @Html.ValidationMessageFor(model => model.AtletaTurmas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
 }
+
+@Styles.Render("~/bundles/Select/css")
 
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Select/js")
 }
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var atletasSelecionados = @Html.Raw(Json.Encode(@ViewBag.atletasSelecionados));
+<script>
+    window.onload = () => {
+    var atletasSelecionados = @Html.Raw(Json.Encode(@ViewBag.atletasSelecionados));
         if (atletasSelecionados.length > 0) {
-            /*swal("Atenção!", "Essa Turma Possui Atletas!!", "warning");*/
             $('#atletas').val(atletasSelecionados);
         }
-    });
+        $('select').select2();
+    }
 </script>
+
+

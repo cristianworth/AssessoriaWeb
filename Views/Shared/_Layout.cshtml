@@ -20,8 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="/Imagens/logo_timeholz.png" alt="logo_timeholz" width="55" height="55">
-                @Html.ActionLink("Time Holz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "font-family: cursive; font-weight: bold;" })
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand" style="font-weight: bold; padding:0; display: flex; align-items: center; margin: 0 10px"><i class="icon-holz"></i>Time Holz</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,7 +29,7 @@
                         if (HttpContext.Current.User.IsInRole("assessor") || HttpContext.Current.User.IsInRole("admin"))
                         {
                             <li>
-                                <a class="btn btn-primary dropdown-toggle glyphicon glyphicon-menu-down" data-toggle="dropdown">
+                                <a class="btn dropdown-toggle btn-pessoa btn-primary  glyphicon glyphicon-menu-down " data-toggle="dropdown">
                                     Pessoas
                                 </a>
                                 <ul class="dropdown-menu">
@@ -56,6 +55,7 @@
                         if (User.IsInRole("assessor") || User.IsInRole("atleta"))
                         {
                             <li>@Html.ActionLink("Dashboard", "Index", "DashBoard")</li>
+                            <li>@Html.ActionLink("Agenda", "Schedule", "DashBoard")</li>
                         }
                     }
                     else
@@ -63,7 +63,7 @@
                         <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                     }
                 </ul>
-                <ul class="nav navbar-nav" style="float:right">
+                <ul class="nav navbar-nav nav-inverse">
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         <li>

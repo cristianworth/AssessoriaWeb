@@ -1,16 +1,97 @@
-﻿
-@using AssessoriaWeb.Models;
-@{
-    ViewBag.Title = "Create";
-}
+﻿@using AssessoriaWeb.Models;
+@{ ViewBag.Title = "Dashboard"; }
+
 @Styles.Render("~/Content/ScheduleDashBoardStyle.css")
-<div id="main">
-@{
-    Html.RenderAction("Schedule",DateTime.Now);
-}
+<h2>Dashboard</h2>
+<hr>
+<div class="wraper-dashboard-content">
+    <div class="wraper-dashboard-column one">
+        <h4>Plano Alimentar</h4>
+        <hr class="dashboard-hr">
+        <div>
+            @Html.Raw(((PlanoAlimentar)ViewBag.plano)?.pla_plano ?? "Nenhum plano alimentar atualmente")
+        </div>
+    </div>
+
+    <div class="wraper-dashboard-column two">
+        <div style="display: flex;flex-direction: row; justify-content: space-between;align-items: center;">
+        <h4>Proximo Treinamento</h4><a href=@Url.Action("Schedule") class="btn btn-default glyphicon glyphicon-calendar"></a></div>
+        <hr class="dashboard-hr">
+        <div>
+            @{Treinamento tre = (Treinamento)ViewBag.treinamento; }
+            @if ((Treinamento)ViewBag.Treinamento != null)
+            {
+                <p><b>@(tre.tre_data.ToShortDateString()) - @tre.tre_hora.ToString(@"hh\:mm")</b></p>
+                <p>@tre.tre_descricao</p>
+            }
+            else
+            {
+                <p>Nenhum Treninamento futuro</p>
+            }
+        </div>
+    </div>
+
+    <div class="wraper-dashboard-column three">
+        <h4>Avaliação Fisica</h4>
+        <hr class="dashboard-hr">
+        <div>
+            @model AssessoriaWeb.Models.Avaliacao
+            @if ((Avaliacao)ViewBag.avaliacao != null)
+            {
+                <dl class="dl-horizontal">
+                    @{ Avaliacao av = (Avaliacao)ViewBag.avaliacao; }
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ava_data)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => av.ava_data)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ava_peso)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => av.ava_peso)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ava_gorduraVisceral)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => av.ava_gorduraVisceral)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ava_gorduraCorporal)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => av.ava_gorduraCorporal)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ava_bioimpedancia)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => av.ava_bioimpedancia)
+                    </dd>
+                </dl>
+            }
+            else
+            {
+                <p>Nenhuma avaliação física feita</p>
+            }
+        </div>
+    </div>
+
 </div>
 
+
 @section Scripts {
-    @Scripts.Render("~/Scripts/ScheduleDashBoard.js")
+
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -38,24 +38,27 @@ Main Components
     align-content: center;
     align-items: center;
 }
+
 .column-number-count {
     background-color: #337ab7;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-
     color: white;
     display: table-cell;
     vertical-align: middle;
     padding: 2px;
 }
-.column-number-count:empty {
-    display:none
-}
+
+    .column-number-count:empty {
+        display: none
+    }
+
     .column-number-count:hover {
         text-decoration: none;
-        color:white;
+        color: white;
     }
+
 .wrap {
     display: flex;
     flex-wrap: wrap;
@@ -692,4 +695,78 @@ Main Components
 .cd-schedule.modal-is-open .cover-layer {
     opacity: 1;
     visibility: visible;
+}
+
+li.events-group.today {
+    background-color: #e5e5fd75;
+}
+
+    li.events-group.today > div.top-info {
+        color: #1a73e8;
+    }
+
+
+/*.wraper-dashboard-content {
+    padding-top: 50px;
+    display: grid;
+    min-height: 500px;
+    grid-gap: 20px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "one two"
+        "one three"
+        "one three";
+}*/
+
+.wraper-dashboard-content {
+    padding-top: 50px;
+    display: grid;
+    min-height: 500px;
+    grid-gap: 20px;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "one two"
+        "one three"
+        "one .";
+}
+
+
+@media (max-width: 800px) {
+    .wraper-dashboard-content {
+        padding-top: 20px;
+        display: grid;
+        min-height: 500px;
+        grid-gap: 20px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "two"
+            "one"
+            "one"
+            "one"
+            "three"
+            "three";
+    }
+}
+
+.wraper-dashboard-column {
+    /*border: thin #aaaaaa solid;*/
+    margin: 1px;
+    padding: 20px;
+    box-shadow: 0 2px 7px -1px rgba(0,0,0,0.2),0 1px 1px 0 rgba(0,0,0,0.14),0 1px 3px 0 rgba(0,0,0,0.12);
+}
+
+    .wraper-dashboard-column.one {
+        grid-area: one;
+    }
+
+    .wraper-dashboard-column.two {
+        grid-area: two;
+    }
+
+    .wraper-dashboard-column.three {
+        grid-area: three;
+    }
+
+.dashboard-hr {
+    border-top: 1px solid #1a73e8
 }

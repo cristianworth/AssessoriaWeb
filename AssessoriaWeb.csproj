@@ -292,6 +292,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\favicon-70x70.png" />
+    <Content Include="Imagens\logo_timeholz.png" />
+    <Content Include="Imagens\Sports1.jpg" />
+    <Content Include="Imagens\Sports2.jpg" />
+    <Content Include="Imagens\Sports3.jpeg" />
+    <Content Include="Imagens\Sports4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -403,6 +409,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ScheduleDashBoard.js" />
+    <Content Include="Scripts\Select\css\select2.css" />
+    <Content Include="Scripts\Select\css\select2.min.css" />
+    <Content Include="Scripts\Select\js\i18n\pt-BR.js" />
+    <Content Include="Scripts\Select\js\select2.full.js" />
+    <Content Include="Scripts\Select\js\select2.full.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -468,8 +479,9 @@
     <Content Include="Views\PlanoAlimentares\Details.cshtml" />
     <Content Include="Views\PlanoAlimentares\Edit.cshtml" />
     <Content Include="Views\PlanoAlimentares\Index.cshtml" />
-    <Content Include="Views\DashBoard\index.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
     <Content Include="Views\DashBoard\Schedule.cshtml" />
+    <Content Include="Views\DashBoard\ScheduleTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,9 +59,10 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
+        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] AtividadeTreinamentos)
         {
-            foreach (int id in atividades)
+
+            foreach (int id in AtividadeTreinamentos)
             {
                 treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
             }
@@ -75,6 +76,7 @@ namespace AssessoriaWeb.Controllers
 
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
             ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
+            ViewBag.atividades = new MultiSelectList(db.Atividades, "ati_id", "ati_descricao");
             return View(treinamento);
         }
 
@@ -103,16 +105,17 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
+        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] AtividadeTreinamentos)
         {
             List<AtividadeTreinamento> atividadesRelacionadas = db.AtividadeTreinamentos.Where(x => x.tre_id == treinamento.tre_id).ToList();
+
             foreach (AtividadeTreinamento ati in atividadesRelacionadas)
             {
                 db.AtividadeTreinamentos.Remove(ati); /*Remove todas as Atividades do Treinamento*/
                 db.SaveChanges();
             }
 
-            foreach (int id in atividades)
+            foreach (int id in AtividadeTreinamentos)
             {
                 treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
             }
@@ -127,6 +130,8 @@ namespace AssessoriaWeb.Controllers
 
             ViewBag.ass_id = new SelectList(db.Assessors.Include(a => a.Pessoa), "ass_id", "Pessoa.pes_nome", treinamento.ass_id);
             ViewBag.atl_id = new SelectList(db.Atletas.Include(a => a.Pessoa), "atl_id", "Pessoa.pes_nome", treinamento.atl_id);
+            ViewBag.atividades = new MultiSelectList(db.Atividades, "ati_id", "ati_descricao");
+            ViewBag.atividadesSelecionadas = db.AtividadeTreinamentos.Where(x => x.tre_id == treinamento.tre_id).Select(x => x.ati_id).ToList<int>();
             return View(treinamento);
         }
 
@@ -170,5 +175,60 @@ namespace AssessoriaWeb.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpGet]
+        public ActionResult ValidateDate(DateTime tre_data, TimeSpan? tre_hora, int atl_id = 0, int tre_id=0)
+        {
+            bool verifica = false;
+            if (tre_hora == null)
+            {
+                tre_hora = DateTime.Now.TimeOfDay.Add(TimeSpan.FromHours(1));
+            }
+            else {
+                verifica = atl_id != 0;
+            }
+            if (tre_data > DateTime.Now || (tre_data == DateTime.Now  && tre_hora > DateTime.Now.TimeOfDay ))
+            {
+                if (verifica) {
+                    List<Treinamento> list = db.Treinamentoes.Where(tre => tre.atl_id == atl_id && tre.tre_id != tre_id).ToList();
+                    int count = list.Where(tre => tre.tre_data == tre_data && !( tre_hora > tre.tre_hora.Add(TimeSpan.FromHours(1)) || tre_hora < tre.tre_hora.Subtract(TimeSpan.FromHours(1))) ).Count();
+                    if (count > 0)
+                    {
+                        return Json("A atleja já possui um treinamento nesse horario", JsonRequestBehavior.AllowGet);
+                    }
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json("A data deve ser maior que a data atual", JsonRequestBehavior.AllowGet);
+        }   
+        [HttpGet]
+        public ActionResult ValidateHour(TimeSpan tre_hora, DateTime? tre_data, int atl_id = 0, int tre_id = 0)
+        {
+            bool verifica = false;
+            if (tre_data == null)
+            {
+                tre_data = DateTime.Now;
+            }
+            else
+            {
+                verifica = atl_id != 0;
+            }
+            TimeSpan dataInicial = TimeSpan.FromHours(6);
+            TimeSpan dataFinal = TimeSpan.FromHours(22);
+            if (tre_hora > dataInicial && tre_hora < dataFinal)
+            {
+                if (verifica)
+                {
+                    List<Treinamento> list = db.Treinamentoes.Where(tre => tre.atl_id == atl_id && tre.tre_id != tre_id).ToList();
+                    int count = list.Where(tre => tre.tre_data == tre_data && !(tre_hora > tre.tre_hora.Add(TimeSpan.FromHours(1)) || tre_hora < tre.tre_hora.Subtract(TimeSpan.FromHours(1)))).Count();
+                    if (count > 0)
+                    {
+                        return Json("A atleja já possui um treinamento nesse horario", JsonRequestBehavior.AllowGet);
+                    }
+                }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json("A hora deve estar entre as 07:00 e as 22:00", JsonRequestBehavior.AllowGet);
+        }    
+
     }
 }
