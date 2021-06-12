@@ -58,9 +58,12 @@ namespace AssessoriaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "trm_id,trm_descricao,trm_observacao,trm_HoraInicial,trm_HoraFinal,ass_id")] Turma turma, int[] atletas)
         {
-            foreach (int id in atletas)
+            if (atletas != null)
             {
-                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id });
+                foreach (int id in atletas)
+                {
+                    turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id });
+                }
             }
 
             if (ModelState.IsValid)
@@ -107,9 +110,12 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
             }
 
-            foreach (int id in atletas)
+            if (atletas != null)
             {
-                turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id }); /*Adiciona os novos Atletas na Turma*/
+                foreach (int id in atletas)
+                {
+                    turma.AtletaTurmas.Add(new AtletaTurma { atl_id = id }); /*Adiciona os novos Atletas na Turma*/
+                }
             }
 
             if (ModelState.IsValid)
