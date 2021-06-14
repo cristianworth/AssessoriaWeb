@@ -122,33 +122,6 @@ namespace AssessoriaWeb.Controllers
                 return HttpNotFound();
             }
 
-            db.Entry(pessoa).Collection(p => p.Assessores).Load();
-            if (pessoa.Assessores.Count > 0) {
-                ViewBag.Message = "Não pode excluir, pois possui Assessores relacionados";
-                return View();
-            }
-
-            db.Entry(pessoa).Collection(p => p.Atletas).Load();
-            if (pessoa.Atletas.Count > 0)
-            {
-                ViewBag.Message = "Não pode excluir, pois possui Atletas relacionados";
-                return View();
-            }
-
-            db.Entry(pessoa).Collection(p => p.Nutricionistas).Load();
-            if (pessoa.Nutricionistas.Count > 0)
-            {
-                ViewBag.Message = "Não pode excluir, pois possui Nutricionistas relacionados";
-                return View();
-            }
-
-            db.Entry(pessoa).Collection(p => p.Enderecos).Load();
-            if (pessoa.Enderecos.Count > 0)
-            {
-                ViewBag.Message = "Não pode excluir, pois possui Endereços relacionados";
-                return View();
-            }
-
             return View(pessoa);
         }
 
@@ -158,6 +131,35 @@ namespace AssessoriaWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Pessoa pessoa = db.Pessoas.Find(id);
+
+            db.Entry(pessoa).Collection(p => p.Assessores).Load();
+            if (pessoa.Assessores.Count > 0)
+            {
+                ViewBag.Message = "Não pode excluir, pois possui Assessores relacionados com esse Usuário";
+                return View(pessoa);
+            }
+
+            db.Entry(pessoa).Collection(p => p.Atletas).Load();
+            if (pessoa.Atletas.Count > 0)
+            {
+                ViewBag.Message = "Não pode excluir, pois possui Atletas relacionados com esse Usuário";
+                return View(pessoa);
+            }
+
+            db.Entry(pessoa).Collection(p => p.Nutricionistas).Load();
+            if (pessoa.Nutricionistas.Count > 0)
+            {
+                ViewBag.Message = "Não pode excluir, pois possui Nutricionistas relacionados com esse Usuário";
+                return View(pessoa);
+            }
+
+            db.Entry(pessoa).Collection(p => p.Enderecos).Load();
+            if (pessoa.Enderecos.Count > 0)
+            {
+                ViewBag.Message = "Não pode excluir, pois possui Endereços relacionados com esse Usuário";
+                return View(pessoa);
+            }
+
             db.Pessoas.Remove(pessoa);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -11,8 +11,8 @@
     <h4>Usuário</h4>
     <hr />
     @if (@ViewBag.Message != null)
-    { 
-        <div style="border:1px solid red">
+    {
+        <div class="alert alert-danger" role="alert">
             @ViewBag.Message
         </div>
     }
@@ -69,11 +69,11 @@
 
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Deletar" class="btn btn-danger" />
-            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Deletar" class="btn btn-danger" />
+        @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-info" })
+    </div>
     }
 </div>
