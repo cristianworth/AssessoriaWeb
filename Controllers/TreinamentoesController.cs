@@ -59,12 +59,14 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] AtividadeTreinamentos)
+        public ActionResult Create([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
         {
-
-            foreach (int id in AtividadeTreinamentos)
+            if (atividades != null)
             {
-                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
+                foreach (int id in atividades)
+                {
+                    treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id });
+                }
             }
 
             if (ModelState.IsValid)
@@ -105,7 +107,7 @@ namespace AssessoriaWeb.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] AtividadeTreinamentos)
+        public ActionResult Edit([Bind(Include = "tre_id,tre_data,tre_hora,tre_valor,tre_descricao,ass_id,atl_id")] Treinamento treinamento, int[] atividades)
         {
             List<AtividadeTreinamento> atividadesRelacionadas = db.AtividadeTreinamentos.Where(x => x.tre_id == treinamento.tre_id).ToList();
 
@@ -115,9 +117,12 @@ namespace AssessoriaWeb.Controllers
                 db.SaveChanges();
             }
 
-            foreach (int id in AtividadeTreinamentos)
+            if (atividades != null)
             {
-                treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
+                foreach (int id in atividades)
+                {
+                    treinamento.AtividadeTreinamentos.Add(new AtividadeTreinamento { ati_id = id }); /*Adiciona as novas Atividades no Treinamento*/
+                }
             }
 
             if (ModelState.IsValid)

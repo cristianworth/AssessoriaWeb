@@ -6,83 +6,83 @@
 
 <h2>Editar</h2>
 
-@Styles.Render("~/bundles/Select/css")
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Treinamento</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.tre_id)
+<div class="form-horizontal">
+    <h4>Treinamento</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.tre_id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tre_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tre_descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tre_descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tre_data, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.tre_data, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.tre_data, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tre_hora, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tre_hora, new { htmlAttributes = new { @class = "form-control", type = "time" } })
-                @Html.ValidationMessageFor(model => model.tre_hora, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tre_valor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tre_valor, new { htmlAttributes = new { @class = "form-control currency", type = "number", min = "0.00", max = "100000.00" } })
-                @Html.ValidationMessageFor(model => model.tre_valor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ass_id, "Assessor", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ass_id", null, "", htmlAttributes: new { @class = "form-control required", @data_placeholder = "Assessor...", @data_val = "true", @data_val_required = "Selecione um Assessor!" })
-                @Html.ValidationMessageFor(model => model.ass_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.atl_id, "Atleta", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("atl_id", null, "", htmlAttributes: new { @class = "form-control required", @data_placeholder = "Atleta...", @data_val = "true", @data_val_required = "Selecione um Atleta!" })
-                @Html.ValidationMessageFor(model => model.atl_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AtividadeTreinamentos, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ListBox("AtividadeTreinamentos", (MultiSelectList)ViewBag.atividades, new { @class = "form-control required", @data_placeholder = "Atividades...", @data_val_required = "Selecione ao menos uma atividade!", @data_allow_clear = "true" })
-                @Html.ValidationMessageFor(model => model.AtividadeTreinamentos, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.tre_descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tre_descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tre_descricao, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tre_data, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.tre_data, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.tre_data, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tre_hora, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tre_hora, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+            @Html.ValidationMessageFor(model => model.tre_hora, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tre_valor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tre_valor, new { htmlAttributes = new { @class = "form-control currency", type = "number", min = "0.00", max = "100000.00" } })
+            @Html.ValidationMessageFor(model => model.tre_valor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ass_id, "Assessor", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ass_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ass_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.atl_id, "Atleta", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("atl_id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.atl_id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AtividadeTreinamentos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBox("atividades", (MultiSelectList)ViewBag.atividades, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AtividadeTreinamentos, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
 }
 
+@Styles.Render("~/bundles/Select/css")
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
@@ -90,20 +90,21 @@
     @Scripts.Render("~/bundles/Select/js")
 }
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
-    window.onload = () => {
+    $(document).ready(function () {
         var atividadesSelecionadas = @Html.Raw(Json.Encode(@ViewBag.atividadesSelecionadas));
         if (atividadesSelecionadas.length > 0) {
             /*swal("Atenção!", "Esse Treinamento Possui Atividades!!", "warning");*/
             $('#atividades').val(atividadesSelecionadas);
         }
-        $('.currency').change(function () {
-            var value;
-            if (value = this.valueAsNumber) {
-                $(this).val(`${value.toFixed(2)}`);
-            }
-        });
         $('select').select2();
-    }
+    });
+    $('.currency').change(function () {
+        var value;
+        if (value = this.valueAsNumber) {
+            $(this).val(`${value.toFixed(2)}`.replace('.', ','));
+        }
+    });
 </script>
