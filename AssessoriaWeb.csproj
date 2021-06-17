@@ -279,7 +279,6 @@
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Treinamento.cs" />
-    <Compile Include="Models\TipoPessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
