@@ -29,8 +29,8 @@
                         if (HttpContext.Current.User.IsInRole("assessor") || HttpContext.Current.User.IsInRole("admin"))
                         {
                             <li>
-                                <a class="btn dropdown-toggle btn-pessoa btn-primary  glyphicon glyphicon-menu-down " data-toggle="dropdown">
-                                    Pessoas
+                                <a class="btn dropdown-toggle btn-pessoa btn-primary  glyphicon glyphicon-menu-down " data-toggle="dropdown" style="padding-top: 12px;">
+                                    <span style="font-family:Helvetica,Arial,sans-serif;font-size: 14px; line-height: 1.42857143; top: -18px;">Pessoas</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Usuário", "Index", "Pessoas")</li>

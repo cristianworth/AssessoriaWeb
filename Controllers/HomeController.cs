@@ -78,7 +78,7 @@ namespace AssessoriaWeb.Controllers
                         1,
                         pessoa.pes_login,
                         DateTime.Now,
-                        DateTime.Now.AddMinutes(15),
+                        DateTime.Now.AddMinutes(720),
                         true,
                         serializer.Serialize(roles.ToArray()));
 
