@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Atleta</h4>
         <hr />
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.atl_observacao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.atl_observacao,new { @class = "form-control" } )
+                @Html.TextAreaFor(model => model.atl_observacao, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.atl_observacao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,6 +51,17 @@
     </div>
 }
 
+@Styles.Render("~/bundles/Select/css")
+
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Select/js")
 }
+
+
+<script>
+    window.onload = () => {
+        $('select').select2();
+    }
+</script>

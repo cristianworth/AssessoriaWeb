@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Assessor</h4>
         <hr />
@@ -42,6 +42,17 @@
     </div>
 }
 
+@Styles.Render("~/bundles/Select/css")
+
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Select/js")
 }
+
+
+<script>
+    window.onload = () => {
+        $('select').select2();
+    }
+</script>

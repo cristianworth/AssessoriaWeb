@@ -7,10 +7,10 @@
 <h2>Cadastrar</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Nutricionista</h4>
         <hr />
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nut_crn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nut_crn, new { htmlAttributes = new { @class = "form-control crn", maxlength = "4", minlength = "4"  } })
+                @Html.EditorFor(model => model.nut_crn, new { htmlAttributes = new { @class = "form-control crn", maxlength = "4", minlength = "4" } })
                 @Html.ValidationMessageFor(model => model.nut_crn, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pes_id, "Nome", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("pes_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("pes_id", null, htmlAttributes: new { @class = "form-control required" , @data_placeholder = "Pessoa...", @data_val = "true", @data_val_required = "Selecione uma pessoa!" })
                 @Html.ValidationMessageFor(model => model.pes_id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,11 +48,23 @@
     </div>
 }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 <script type="text/javascript">$(".cnpj").mask("00.000.000/0000-00");</script>
 <script type="text/javascript">$(".crn").mask("0000");</script>
 
+
+@Styles.Render("~/bundles/Select/css")
+
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Select/js")
 }
+
+
+<script>
+    window.onload = () => {
+        $('select').val("");
+        $('select').select2();
+    }
+</script>
