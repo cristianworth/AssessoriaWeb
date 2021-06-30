@@ -68,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AtividadeTreinamentos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBox("AtividadeTreinamentos", (MultiSelectList)ViewBag.atividades, new { @class = "form-control required", @data_placeholder = "Atividades...", @data_val_required = "Selecione ao menos uma atividade!", @data_allow_clear = "true" })
+                @Html.ListBox("atividades", (MultiSelectList)ViewBag.atividades, new { @class = "form-control required", @data_placeholder = "Atividades...", @data_val_required = "Selecione ao menos uma atividade!", @data_allow_clear = "true" })
                 @Html.ValidationMessageFor(model => model.AtividadeTreinamentos, "", new { @class = "text-danger" })
             </div>
         </div>
