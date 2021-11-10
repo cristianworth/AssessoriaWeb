@@ -16,3 +16,10 @@ A conexão com o banco de dados é definida na tag `connectionStrings` do arquiv
   * Diferença de versões no `References`, verifique se `MySql.Data` e `MySql.Data.EntityFramework` instalados são da versão 8.0.24
 * The provider type names have to be unique for each configured provider
   * Alguma tag de `provider` está duplicada no arquivo `Web.config`
+
+### Possíveis melhorias
+* Converter MySql para SqlServer
+* Usar EF Migration para criar o banco
+* Add SeedData
+* Adicionar filtros de pesquisa
+* Add tag ValidateAntiForgeryToken
